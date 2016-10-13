@@ -19,7 +19,7 @@ class hostPanelSiteDeleteProcessor extends modObjectProcessor
     public function initialize()
     {
         $this->sock_host = $this->modx->getOption('hostpanel_socket_host');
-        $this->sock_port = (int) $this->modx->getOption('hostpanel_socket_port');
+        $this->sock_port = (int)$this->modx->getOption('hostpanel_socket_port');
 
         return parent::initialize();
     }
@@ -37,28 +37,27 @@ class hostPanelSiteDeleteProcessor extends modObjectProcessor
         if (empty($ids)) {
             return $this->failure($this->modx->lexicon('hostpanel_site_err_ns'));
         }
-
         $id = $ids[0];
 
         if (!$object = $this->modx->getObject($this->classKey, $id)) {
             return $this->failure($this->modx->lexicon('hostpanel_site_err_nf'));
         }
+        if ($object->get('lock')) {
+            return $this->failure($this->modx->lexicon('hostpanel_site_err_remove_site_locked'));
+        }
 
-        // >> Проверяем сокет
+        // Проверяем сокет
         if (($this->sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) < 0) {
             return $this->failure($this->modx->lexicon('hostpanel_site_err_socket_create'));
         }
-
-        $this->sock_connect = socket_connect($this->sock, $this->sock_host, $this->sock_port);
-        if ($this->sock_connect === false) {
+        if (!$this->sock_connect = socket_connect($this->sock, $this->sock_host, $this->sock_port)) {
             return $this->failure($this->modx->lexicon('hostpanel_site_err_socket_connect'));
         }
-        // << Проверяем сокет
 
         $object->set('status', 'process');
         $object->save();
 
-        // >> Отсылаем задание сокету
+        // Отсылаем задание сокету
         $task_array = array(
             'data' => array(
                 'id' => $id,
@@ -78,10 +77,7 @@ class hostPanelSiteDeleteProcessor extends modObjectProcessor
         );
 
         $task_yaml = yaml_emit($task_array);
-        //$this->modx->log(MODX::LOG_LEVEL_ERROR, print_r($task_yaml,1));
-
         socket_write($this->sock, $task_yaml, strlen($task_yaml));
-
         $out = socket_read($this->sock, 1024);
 
         if (stristr($out, 'ERROR')) {
@@ -94,8 +90,6 @@ class hostPanelSiteDeleteProcessor extends modObjectProcessor
         if (isset($this->sock)) {
             socket_close($this->sock);
         }
-
-        // << Отсылаем задание сокету
 
         return $this->success();
     }

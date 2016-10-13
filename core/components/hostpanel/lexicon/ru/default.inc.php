@@ -43,7 +43,8 @@ $_lang['hostpanel_site_remove'] = 'Удалить сайт из базы';
 $_lang['hostpanel_site_remove_confirm'] = 'Вы уверены, что хотите удалить этот сайт из базы? Все файлы и информация с сервера при этом будет <b>безвозвратно утеряны</b>!';
 $_lang['hostpanel_site_delete'] = 'Удалить все данные сайта';
 $_lang['hostpanel_site_delete_confirm'] = 'Вы уверены, что хотите удалить все данные этого сайта? Все файлы, база и информация с сервера, а также юзер на сервере при этом будет <b>безвозвратно удалены</b>!';
-$_lang['hostpanel_site_active'] = 'Включено';
+$_lang['hostpanel_site_lock'] = 'Заблокировать от удаления';
+$_lang['hostpanel_site_unlock'] = 'Разблокировать для удаления';
 
 //$_lang['hostpanel_site_err_name'] = 'Вы должны указать имя сайта.';
 $_lang['hostpanel_site_err_yaml_notfound'] = 'Установите расширение yaml для PHP.';
@@ -58,6 +59,7 @@ $_lang['hostpanel_site_err_ns'] = 'Сайт не указан.';
 $_lang['hostpanel_site_err_remove'] = 'Ошибка при удалении сайта.';
 $_lang['hostpanel_site_err_delete'] = 'Ошибка при удалении файлов, базы и юзера сайта.';
 $_lang['hostpanel_site_err_save'] = 'Ошибка при сохранении сайта.';
+$_lang['hostpanel_site_err_remove_site_locked'] = 'Сайт заблокирован от удаления. Для начала разблокируйте сайт.';
 
 $_lang['hostpanel_grid_search'] = 'Поиск';
 $_lang['hostpanel_grid_actions'] = 'Действия';

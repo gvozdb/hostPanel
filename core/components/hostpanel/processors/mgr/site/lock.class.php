@@ -1,14 +1,11 @@
 <?php
 
-/**
- * Remove an Sites
- */
-class hostPanelSiteRemoveProcessor extends modObjectProcessor
+class hostPanelSiteLockProcessor extends modObjectProcessor
 {
     public $objectType = 'hostPanelSite';
     public $classKey = 'hostPanelSite';
     public $languageTopics = array('hostpanel');
-    //public $permission = 'remove';
+    //public $permission = 'save';
 
     /**
      * @return array|string
@@ -29,15 +26,13 @@ class hostPanelSiteRemoveProcessor extends modObjectProcessor
             if (!$object = $this->modx->getObject($this->classKey, $id)) {
                 return $this->failure($this->modx->lexicon('hostpanel_site_err_nf'));
             }
-            if ($object->get('lock')) {
-                return $this->failure($this->modx->lexicon('hostpanel_site_err_remove_site_locked'));
-            }
 
-            $object->remove();
+            $object->set('lock', true);
+            $object->save();
         }
 
         return $this->success();
     }
 }
 
-return 'hostPanelSiteRemoveProcessor';
+return 'hostPanelSiteLockProcessor';

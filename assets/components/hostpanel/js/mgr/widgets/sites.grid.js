@@ -273,6 +273,48 @@ Ext.extend(hostPanel.grid.Sites, MODx.grid.Grid, {
         return true;
     },
 
+    lockSite: function (act, btn, e) {
+        var ids = this._getSelectedIds();
+        if (!ids.length) {
+            return false;
+        }
+        MODx.Ajax.request({
+            url: this.config.url,
+            params: {
+                action: 'mgr/site/lock',
+                ids: Ext.util.JSON.encode(ids),
+            },
+            listeners: {
+                success: {
+                    fn: function () {
+                        this.refresh();
+                    }, scope: this
+                }
+            }
+        })
+    },
+
+    unlockSite: function (act, btn, e) {
+        var ids = this._getSelectedIds();
+        if (!ids.length) {
+            return false;
+        }
+        MODx.Ajax.request({
+            url: this.config.url,
+            params: {
+                action: 'mgr/site/unlock',
+                ids: Ext.util.JSON.encode(ids),
+            },
+            listeners: {
+                success: {
+                    fn: function () {
+                        this.refresh();
+                    }, scope: this
+                }
+            }
+        })
+    },
+
     disableSite: function (act, btn, e) {
         var ids = this._getSelectedIds();
         if (!ids.length) {

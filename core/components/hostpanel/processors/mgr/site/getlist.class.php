@@ -99,26 +99,52 @@ class hostPanelSiteGetListProcessor extends modObjectGetListProcessor
                 );
             }
         }
-        if ($array['status'] == 'deleted') {
-            // Remove
-            $array['actions'][] = array(
-                'cls' => '',
-                'icon' => 'icon icon-times action-red',
-                'title' => $this->modx->lexicon('hostpanel_site_remove'),
-                //'multiple' => $this->modx->lexicon('hostpanel_sites_remove'),
-                'action' => 'removeSite',
-                'button' => true,
-                'menu' => true,
-            );
+        if (!$array['lock']) {
+            if ($array['status'] == 'deleted') {
+                // Remove
+                $array['actions'][] = array(
+                    'cls' => '',
+                    'icon' => 'icon icon-times action-red',
+                    'title' => $this->modx->lexicon('hostpanel_site_remove'),
+                    //'multiple' => $this->modx->lexicon('hostpanel_sites_remove'),
+                    'action' => 'removeSite',
+                    'button' => true,
+                    'menu' => true,
+                );
+            } else {
+                if ($array['status'] != 'process') {
+                    // Lock
+                    $array['actions'][] = array(
+                        'cls' => '',
+                        'icon' => 'icon icon-lock',
+                        'title' => $this->modx->lexicon('hostpanel_site_lock'),
+                        //'multiple' => $this->modx->lexicon('hostpanel_sites_lock'),
+                        'action' => 'lockSite',
+                        'button' => true,
+                        'menu' => true,
+                    );
+                }
+
+                // Delete
+                $array['actions'][] = array(
+                    'cls' => '',
+                    'icon' => 'icon icon-times action-red',
+                    'title' => $this->modx->lexicon('hostpanel_site_delete'),
+                    //'multiple' => $this->modx->lexicon('hostpanel_sites_remove'),
+                    'action' => 'deleteSite',
+                    'button' => false,
+                    'menu' => true,
+                );
+            }
         } else {
-            // Delete
+            // Unlock
             $array['actions'][] = array(
                 'cls' => '',
-                'icon' => 'icon icon-times action-red',
-                'title' => $this->modx->lexicon('hostpanel_site_delete'),
-                //'multiple' => $this->modx->lexicon('hostpanel_sites_remove'),
-                'action' => 'deleteSite',
-                'button' => false,
+                'icon' => 'icon icon-unlock',
+                'title' => $this->modx->lexicon('hostpanel_site_unlock'),
+                //'multiple' => $this->modx->lexicon('hostpanel_sites_unlock'),
+                'action' => 'unlockSite',
+                'button' => true,
                 'menu' => true,
             );
         }
