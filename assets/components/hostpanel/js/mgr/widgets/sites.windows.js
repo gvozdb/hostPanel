@@ -208,14 +208,12 @@ Ext.extend(hostPanel.window.CreateSite, MODx.Window, {
             bodyStyle: {background: 'transparent'},
             border: true,
             deferredRender: false,
-            autoHeight: false,
             autoScroll: false,
             anchor: '100% 100%',
             items: [{
                 title: _('hostpanel_site'),
                 layout: 'form',
                 cls: 'modx-panel',
-                autoHeight: false,
                 anchor: '100% 100%',
                 labelWidth: 100,
                 items: [{
