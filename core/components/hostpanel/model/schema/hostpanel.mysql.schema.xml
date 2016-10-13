@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="hostpanel" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="hostpanel"
+       version="1.1">
+
+    <object class="hostPanelSite" table="hostpanel_sites" extends="xPDOSimpleObject">
+        <field key="idx" dbtype="integer" precision="10" phptype="integer" attributes="unsigned" null="false"
+               default="0"/>
+        <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="description" dbtype="text" phptype="text" null="true" default=""/>
+        <field key="group" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="user" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="site" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="status" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="cms" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="version" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="layout" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="sftp_port" dbtype="integer" precision="10" phptype="integer" attributes="unsigned" null="false"
+               default="22"/>
+        <field key="sftp_user" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="sftp_pass" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="mysql_site" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="mysql_db" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="mysql_user" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="mysql_pass" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="mysql_table_prefix" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="manager_site" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="manager_user" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="manager_pass" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="path" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
+
+        <index alias="name" name="name" primary="false" unique="false" type="BTREE">
+            <column key="name" length="" collation="A" null="false"/>
+        </index>
+        <index alias="group" name="group" primary="false" unique="false" type="BTREE">
+            <column key="group" length="" collation="A" null="false"/>
+        </index>
+        <index alias="user" name="user" primary="false" unique="false" type="BTREE">
+            <column key="user" length="" collation="A" null="false"/>
+        </index>
+        <index alias="site" name="site" primary="false" unique="false" type="BTREE">
+            <column key="site" length="" collation="A" null="false"/>
+        </index>
+        <index alias="status" name="status" primary="false" unique="false" type="BTREE">
+            <column key="status" length="" collation="A" null="false"/>
+        </index>
+        <index alias="cms" name="cms" primary="false" unique="false" type="BTREE">
+            <column key="cms" length="" collation="A" null="false"/>
+        </index>
+        <index alias="version" name="version" primary="false" unique="false" type="BTREE">
+            <column key="version" length="" collation="A" null="false"/>
+        </index>
+        <index alias="layout" name="layout" primary="false" unique="false" type="BTREE">
+            <column key="layout" length="" collation="A" null="false"/>
+        </index>
+        <index alias="sftp_port" name="sftp_port" primary="false" unique="false" type="BTREE">
+            <column key="sftp_port" length="" collation="A" null="false"/>
+        </index>
+        <index alias="sftp_user" name="sftp_user" primary="false" unique="false" type="BTREE">
+            <column key="sftp_user" length="" collation="A" null="false"/>
+        </index>
+        <index alias="sftp_pass" name="sftp_pass" primary="false" unique="false" type="BTREE">
+            <column key="sftp_pass" length="" collation="A" null="false"/>
+        </index>
+        <index alias="mysql_site" name="mysql_site" primary="false" unique="false" type="BTREE">
+            <column key="mysql_site" length="" collation="A" null="false"/>
+        </index>
+        <index alias="mysql_db" name="mysql_db" primary="false" unique="false" type="BTREE">
+            <column key="mysql_db" length="" collation="A" null="false"/>
+        </index>
+        <index alias="mysql_user" name="mysql_user" primary="false" unique="false" type="BTREE">
+            <column key="mysql_user" length="" collation="A" null="false"/>
+        </index>
+        <index alias="mysql_pass" name="mysql_pass" primary="false" unique="false" type="BTREE">
+            <column key="mysql_pass" length="" collation="A" null="false"/>
+        </index>
+        <index alias="mysql_table_prefix" name="mysql_table_prefix" primary="false" unique="false" type="BTREE">
+            <column key="mysql_table_prefix" length="" collation="A" null="false"/>
+        </index>
+        <index alias="manager_site" name="manager_site" primary="false" unique="false" type="BTREE">
+            <column key="manager_site" length="" collation="A" null="false"/>
+        </index>
+        <index alias="manager_user" name="manager_user" primary="false" unique="false" type="BTREE">
+            <column key="manager_user" length="" collation="A" null="false"/>
+        </index>
+        <index alias="manager_pass" name="manager_pass" primary="false" unique="false" type="BTREE">
+            <column key="manager_pass" length="" collation="A" null="false"/>
+        </index>
+        <index alias="path" name="path" primary="false" unique="false" type="BTREE">
+            <column key="path" length="" collation="A" null="false"/>
+        </index>
+        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
+            <column key="active" length="" collation="A" null="false"/>
+        </index>
+    </object>
+
+
+    <object class="hostPanelSettings" table="hostpanel_settings" extends="xPDOSimpleObject">
+        <field key="key" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="parent" dbtype="varchar" precision="100" phptype="string" null="true" default=""/>
+        <field key="value" dbtype="text" phptype="string" null="true" default=""/>
+
+        <index alias="key" name="key" primary="false" unique="false" type="BTREE">
+            <column key="key" length="" collation="A" null="false"/>
+        </index>
+        <index alias="parent" name="parent" primary="false" unique="false" type="BTREE">
+            <column key="parent" length="" collation="A" null="false"/>
+        </index>
+    </object>
+
+</model>
