@@ -327,13 +327,15 @@ Ext.extend(hostPanel.window.CreateSite, MODx.Window, {
                             id: config.id + '-version',
                             anchor: '100%',
                             listeners: {
-                                'afterrender': {
+                                afterrender: {
                                     fn: function (o) {
                                         setTimeout(function () {
-                                            o.store.getTotalCount() === 0 && o.hide();
+                                            if (o.store.getTotalCount() === 0) {
+                                                o.hide();
+                                            }
                                         }, 9);
-                                        //o.hide();
-                                    }, scope: this
+                                    },
+                                    scope: this
                                 },
                             },
                         }]

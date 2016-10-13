@@ -133,6 +133,7 @@ hostPanel.combo.version = function (config) {
     Ext.applyIf(config, {
         store: new Ext.data.JsonStore({
             id: 0,
+            comboid: config.id,
             root: 'results',
             totalProperty: 'total',
             autoLoad: true,
@@ -147,15 +148,24 @@ hostPanel.combo.version = function (config) {
                 sortdir: config.sortdir || 'DESC',
             },
             listeners: {
-                'clear': {
-                    fn: function (obj) {
+                clear: { fn:
+                    function (obj) {
                         this.hide();
-                    }, scope: this
+                    },
+                    scope: this
                 },
-                'load': {
-                    fn: function (obj, recs, opts) {
-                        obj.getTotalCount() > 0 && this.show();
-                    }, scope: this
+                load: { fn:
+                    function (obj, recs, opts) {
+                        if (obj.getTotalCount() > 0) {
+                            var comboid = obj.comboid;
+                            if (comboid) {
+                                var combo = Ext.getCmp(comboid);
+                                combo.setValue(recs[0].data['value']);
+                            }
+                            this.show();
+                        }
+                    },
+                    scope: this
                 },
             },
         }),
