@@ -27,6 +27,13 @@ hostPanel.window.InfoSite = function (config) {
     });
     hostPanel.window.InfoSite.superclass.constructor.call(this, config);
 
+    this.on('hide', function () {
+        var w = this;
+        window.setTimeout(function () {
+            w.close();
+        }, 200);
+    });
+
     // Обработка клика по ссылке входа в админку и автоматическая отправка POST запроса на вход
     this.on('afterrender', function () {
         var link = Ext.select('.js-manager-link');
@@ -224,6 +231,13 @@ hostPanel.window.CreateSite = function (config) {
         }]
     });
     hostPanel.window.CreateSite.superclass.constructor.call(this, config);
+
+    this.on('hide', function () {
+        var w = this;
+        window.setTimeout(function () {
+            w.close();
+        }, 200);
+    });
 };
 Ext.extend(hostPanel.window.CreateSite, MODx.Window, {
     getFields: function (config) {
@@ -447,6 +461,13 @@ hostPanel.window.EditSite = function (config) {
         }]
     });
     hostPanel.window.EditSite.superclass.constructor.call(this, config);
+
+    this.on('hide', function () {
+        var w = this;
+        window.setTimeout(function () {
+            w.close();
+        }, 200);
+    });
 };
 Ext.extend(hostPanel.window.EditSite, MODx.Window, {
     getFields: function (config) {
@@ -518,6 +539,13 @@ hostPanel.window.UpdateSite = function (config) {
         }]
     });
     hostPanel.window.UpdateSite.superclass.constructor.call(this, config);
+
+    this.on('hide', function () {
+        var w = this;
+        window.setTimeout(function () {
+            w.close();
+        }, 200);
+    });
 };
 Ext.extend(hostPanel.window.UpdateSite, MODx.Window, {
     getFields: function (config) {
