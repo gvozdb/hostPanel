@@ -33,7 +33,11 @@ class hostPanelSiteGetProcessor extends modObjectGetProcessor
             $array['site_link'] = '<a href="http://' . $array['site'] . '" target="_blank">' . $array['site'] . '</a>';
         }
         if ($array['manager_site']) {
-            $array['manager_site_link'] = '<a href="http://' . $array['site'] . $array['manager_site'] . '" target="_blank">' . $array['manager_site'] . '</a>';
+            $array['manager_site_link'] = '<a
+                href="http://' . $array['site'] . $array['manager_site'] . '"
+                data-user="' . $array['manager_user'] . '"
+                data-pass="' . $array['manager_pass'] . '"
+                class="js-manager-link">' . $array['manager_site'] . '</a>';
         }
 
         // Получаем список доступных версий

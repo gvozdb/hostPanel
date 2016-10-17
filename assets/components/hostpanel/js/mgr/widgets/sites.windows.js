@@ -26,6 +26,27 @@ hostPanel.window.InfoSite = function (config) {
         }]
     });
     hostPanel.window.InfoSite.superclass.constructor.call(this, config);
+
+    // Обработка клика по ссылке входа в админку и автоматическая отправка POST запроса на вход
+    this.on('afterrender', function () {
+        var link = Ext.select('.js-manager-link');
+        if (link.elements.length) {
+            var $link = Ext.get(link.elements[0]);
+
+            $link.on('click', function (e) {
+                e.preventDefault();
+
+                var url = $link.getAttribute('href');
+                var user = $link.getAttribute('data-user');
+                var pass = $link.getAttribute('data-pass');
+                hostPanel.utils.post(url, {
+                    username: user,
+                    password: pass,
+                    login: 1,
+                });
+            });
+        }
+    });
 };
 Ext.extend(hostPanel.window.InfoSite, MODx.Window, {
     getFields: function (config) {
@@ -90,14 +111,17 @@ Ext.extend(hostPanel.window.InfoSite, MODx.Window, {
                             cls: 'hoster-info',
                             items: [{
                                 xtype: 'displayfield',
+                                id: config.id + '-manager-link',
                                 name: 'manager_site_link',
                                 fieldLabel: 'Ссылка',
                             }, {
                                 xtype: 'displayfield',
+                                id: config.id + '-manager-user',
                                 name: 'manager_user',
                                 fieldLabel: 'Логин',
                             }, {
                                 xtype: 'displayfield',
+                                id: config.id + '-manager-pass',
                                 name: 'manager_pass',
                                 fieldLabel: 'Пароль',
                             }]
