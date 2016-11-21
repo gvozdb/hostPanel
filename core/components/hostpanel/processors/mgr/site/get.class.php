@@ -35,13 +35,15 @@ class hostPanelSiteGetProcessor extends modObjectGetProcessor
         if ($array['manager_site']) {
             $array['manager_site_link'] = '<a
                 href="http://' . $array['site'] . $array['manager_site'] . '"
-                data-user="' . $array['manager_user'] . '"
-                data-pass="' . $array['manager_pass'] . '"
                 class="js-manager-link">' . $array['manager_site'] . '</a>';
+                // data-user="' . $array['manager_user'] . '"
+                // data-pass="' . $array['manager_pass'] . '"
         }
 
         // Получаем список доступных версий
         if ($array['cms']) {
+            $array['cms_full'] = $array['cms'] . ' ' . $array['version'];
+            
             $versions = array();
             $q = $this->modx->newQuery('hostPanelSettings', array(
                 'key' => 'version',

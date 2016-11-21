@@ -124,9 +124,9 @@ Ext.extend(hostPanel.grid.Sites, MODx.grid.Grid, {
         w.reset();
         w.setValues({
             username: MODx.config['hostpanel_user_mask'],
-            modxconnectors: 'connectors',
+            modxconnectors: hostPanel.utils.genRegExpString('connectors_/[0-9a-z]{10}/'),
             modxmanager: 'adminka',
-            modxtableprefix: 'modx_',
+            modxtableprefix: hostPanel.utils.genRegExpString('modx_/[0-9A-Za-z]{10}/_'),
         });
         w.show(e.target);
     },
@@ -201,7 +201,11 @@ Ext.extend(hostPanel.grid.Sites, MODx.grid.Grid, {
                             }
                         });
                         w.reset();
-                        w.setValues(r.object);
+                        var values = Ext.apply({}, r.object);
+                        values['modxconnectors'] = values['connectors_site'];
+                        values['modxmanager'] = values['manager_site'];
+                        values['modxtableprefix'] = values['mysql_table_prefix'];
+                        w.setValues(values);
                         w.show(e.target);
                     }, scope: this
                 }

@@ -3,6 +3,12 @@
 $BUILD_SETTINGS = array();
 $settings = array();
 $tmp = array(
+    'secret' => array(
+        'xtype' => 'textfield',
+        'area' => 'security',
+        'value' => 'DHJKGFksdjfghjsldFHgsyiwur89ug783rgdkhs',
+    ),
+
     'host_domain' => array(
         'xtype' => 'textfield',
         'area' => 'main',

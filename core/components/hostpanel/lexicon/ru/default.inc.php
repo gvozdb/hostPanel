@@ -53,6 +53,7 @@ $_lang['hostpanel_site_err_socket_connect'] = 'Ошибка при подклю�
 $_lang['hostpanel_site_err_ae'] = 'Сайт с таким именем уже существует.';
 $_lang['hostpanel_site_err_version'] = 'Укажите версию движка.';
 $_lang['hostpanel_site_err_cms_not_supported_update'] = 'Данный движок не может быть обновлён.';
+$_lang['hostpanel_site_err_create'] = 'Не удалось создать MODX сайт.';
 $_lang['hostpanel_site_err_update'] = 'Не удалось обновить движок.';
 $_lang['hostpanel_site_err_nf'] = 'Сайт не найден.';
 $_lang['hostpanel_site_err_ns'] = 'Сайт не указан.';
@@ -60,8 +61,13 @@ $_lang['hostpanel_site_err_remove'] = 'Ошибка при удалении са
 $_lang['hostpanel_site_err_delete'] = 'Ошибка при удалении файлов, базы и юзера сайта.';
 $_lang['hostpanel_site_err_save'] = 'Ошибка при сохранении сайта.';
 $_lang['hostpanel_site_err_remove_site_locked'] = 'Сайт заблокирован от удаления. Для начала разблокируйте сайт.';
+$_lang['hostpanel_site_err_secret'] = 'Секретный ключ не совпадает с тем, что указан в даймоне.';
+$_lang['hostpanel_site_err_password_empty'] = 'Необходимо указать пароль.';
+$_lang['hostpanel_site_err_password'] = 'Возникла ошибка при смене пароля. Попытайтесь снова.';
 
 $_lang['hostpanel_grid_search'] = 'Поиск';
 $_lang['hostpanel_grid_actions'] = 'Действия';
 
 $_lang['hostpanel_select_group'] = 'Выбрать группу';
+
+$_lang['hostpanel_combo_password'] = 'Пароль';

@@ -4,9 +4,7 @@ class hostPanelSiteCreateProcessor extends modObjectCreateProcessor
 {
     public $objectType = 'hostPanelSite';
     public $classKey = 'hostPanelSite';
-    public $languageTopics = array('hostpanel');
-    //public $permission = 'create';
-
+    public $languageTopics = array('hostpanel:default');
     protected $name = '';
     protected $domain = '';
     protected $cms = '';
@@ -26,7 +24,7 @@ class hostPanelSiteCreateProcessor extends modObjectCreateProcessor
     public function initialize()
     {
         $this->sock_host = $this->modx->getOption('hostpanel_socket_host');
-        $this->sock_port = (int) $this->modx->getOption('hostpanel_socket_port');
+        $this->sock_port = (int)$this->modx->getOption('hostpanel_socket_port');
 
         return parent::initialize();
     }
@@ -63,13 +61,11 @@ class hostPanelSiteCreateProcessor extends modObjectCreateProcessor
         if (!function_exists(yaml_parse)) {
             return $this->failure($this->modx->lexicon('hostpanel_site_err_yaml_notfound'));
         }
-
         if ($this->modx->getCount($this->classKey, array('name' => $this->name))) {
             $this->modx->error->addField('name', $this->modx->lexicon('hostpanel_site_err_ae'));
 
             return $this->failure($this->modx->lexicon('hostpanel_site_err_ae'));
         }
-
         if (!empty($this->cms) && empty($this->version)) {
             $this->modx->error->addField('version', $this->modx->lexicon('hostpanel_site_err_version'));
 
@@ -128,6 +124,7 @@ class hostPanelSiteCreateProcessor extends modObjectCreateProcessor
 
         // Формируем задание
         $task_array['data'] = array(
+            'secret' => $this->modx->getOption('hostpanel_secret'),
             'id' => $obj->get('id'),
             'user' => $obj->get('user'),
             'pass' => $this->sock_pass,
@@ -164,6 +161,12 @@ class hostPanelSiteCreateProcessor extends modObjectCreateProcessor
         if (stristr($out, 'ERROR')) {
             $obj->set('status', 'deleted');
             $obj->save();
+
+            if (stristr($out, 'secret')) {
+                return $this->failure($this->modx->lexicon('hostpanel_site_err_secret'));
+            } else {
+                return $this->failure($this->modx->lexicon('hostpanel_site_err_create'));
+            }
         }
         if (isset($this->sock)) {
             socket_close($this->sock);

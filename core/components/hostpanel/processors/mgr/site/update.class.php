@@ -20,7 +20,7 @@ class hostPanelSiteUpdateProcessor extends modObjectUpdateProcessor
     public function initialize()
     {
         $this->sock_host = $this->modx->getOption('hostpanel_socket_host');
-        $this->sock_port = (int) $this->modx->getOption('hostpanel_socket_port');
+        $this->sock_port = (int)$this->modx->getOption('hostpanel_socket_port');
 
         return parent::initialize();
     }
@@ -77,6 +77,7 @@ class hostPanelSiteUpdateProcessor extends modObjectUpdateProcessor
 
         // Формируем задание
         $task_array['data'] = array(
+            'secret' => $this->modx->getOption('hostpanel_secret'),
             'id' => $obj->get('id'),
             'user' => $obj->get('user'),
             'pass' => $this->sock_pass,
@@ -102,7 +103,11 @@ class hostPanelSiteUpdateProcessor extends modObjectUpdateProcessor
             $obj->set('status', 'run');
             $obj->save();
 
-            return $this->failure($this->modx->lexicon('hostpanel_site_err_update'));
+            if (stristr($out, 'secret')) {
+                return $this->failure($this->modx->lexicon('hostpanel_site_err_secret'));
+            } else {
+                return $this->failure($this->modx->lexicon('hostpanel_site_err_update'));
+            }
         }
         if (isset($this->sock)) {
             socket_close($this->sock);

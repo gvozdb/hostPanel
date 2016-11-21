@@ -23,6 +23,7 @@
         <field key="mysql_user" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
         <field key="mysql_pass" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
         <field key="mysql_table_prefix" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="connectors_site" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
         <field key="manager_site" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
         <field key="manager_user" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
         <field key="manager_pass" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
@@ -77,6 +78,9 @@
         </index>
         <index alias="mysql_table_prefix" name="mysql_table_prefix" primary="false" unique="false" type="BTREE">
             <column key="mysql_table_prefix" length="" collation="A" null="false"/>
+        </index>
+        <index alias="connectors_site" name="connectors_site" primary="false" unique="false" type="BTREE">
+            <column key="connectors_site" length="" collation="A" null="false"/>
         </index>
         <index alias="manager_site" name="manager_site" primary="false" unique="false" type="BTREE">
             <column key="manager_site" length="" collation="A" null="false"/>

@@ -1,3 +1,56 @@
+// Поле смены пароля
+hostPanel.combo.Password = function (config) {
+    config = config || {};
+    Ext.applyIf(config, {
+        xtype: 'twintrigger',
+        ctCls: 'x-field-password',
+        allowBlank: true,
+        msgTarget: 'under',
+        emptyText: _('hostpanel_combo_password'),
+        name: 'password',
+        triggerAction: 'all',
+        setBtnCls: 'x-field-password-set',
+        magicBtnCls: 'x-field-password-magic',
+        undoBtnCls: 'x-field-password-undo',
+        onTrigger1Click: this._triggerSet,
+        onTrigger2Click: this._triggerMagic,
+        onTrigger3Click: this._triggerUndo,
+    });
+    hostPanel.combo.Password.superclass.constructor.call(this, config);
+    this.on('render', function () {
+        this.getEl().addKeyListener(Ext.EventObject.ENTER, function () {
+            this._triggerSet();
+        }, this);
+    });
+    this.addEvents('undo', 'magic', 'set');
+};
+Ext.extend(hostPanel.combo.Password, Ext.form.TwinTriggerField, {
+    initComponent: function () {
+        Ext.form.TwinTriggerField.superclass.initComponent.call(this);
+        this.triggerConfig = {
+            tag: 'span',
+            cls: 'x-field-password-btns',
+            cn: [
+                {tag: 'div', cls: 'x-form-trigger ' + this.setBtnCls},
+                {tag: 'div', cls: 'x-form-trigger ' + this.magicBtnCls},
+                {tag: 'div', cls: 'x-form-trigger ' + this.undoBtnCls},
+            ]
+        };
+    },
+    _triggerSet: function () {
+        this.fireEvent('set', this);
+    },
+    _triggerMagic: function () {
+        this.fireEvent('magic', this);
+    },
+    _triggerUndo: function () {
+        this.fireEvent('undo', this);
+    },
+});
+Ext.reg('hostpanel-combo-password', hostPanel.combo.Password);
+Ext.reg('hostpanel-field-password', hostPanel.combo.Password);
+
+
 // Комбобокс "CMS"
 hostPanel.combo.cms = function (config) {
     config = config || {};

@@ -1,6 +1,6 @@
 <?php
 
-class hostPanelSiteDeleteProcessor extends modObjectProcessor
+class hostPanelSitePasswordProcessor extends modObjectProcessor
 {
     public $objectType = 'hostPanelSite';
     public $classKey = 'hostPanelSite';
@@ -33,17 +33,17 @@ class hostPanelSiteDeleteProcessor extends modObjectProcessor
             return $this->failure($this->modx->lexicon('access_denied'));
         }
 
-        $ids = $this->modx->fromJSON($this->getProperty('ids'));
-        if (empty($ids)) {
+        $password = $this->getProperty('password');
+        if (empty($password)) {
+            return $this->failure($this->modx->lexicon('hostpanel_site_err_password_empty'));
+        }
+
+        $id = (int)$this->getProperty('id');
+        if (empty($id)) {
             return $this->failure($this->modx->lexicon('hostpanel_site_err_ns'));
         }
-        $id = $ids[0];
-
         if (!$object = $this->modx->getObject($this->classKey, $id)) {
             return $this->failure($this->modx->lexicon('hostpanel_site_err_nf'));
-        }
-        if ($object->get('lock')) {
-            return $this->failure($this->modx->lexicon('hostpanel_site_err_remove_site_locked'));
         }
 
         // Проверяем сокет
@@ -53,9 +53,6 @@ class hostPanelSiteDeleteProcessor extends modObjectProcessor
         if (!$this->sock_connect = socket_connect($this->sock, $this->sock_host, $this->sock_port)) {
             return $this->failure($this->modx->lexicon('hostpanel_site_err_socket_connect'));
         }
-
-        $object->set('status', 'process');
-        $object->save();
 
         // Отсылаем задание сокету
         $task_array = array(
@@ -69,8 +66,10 @@ class hostPanelSiteDeleteProcessor extends modObjectProcessor
             ),
             'task' => array(
                 array(
-                    'remove' => array(
+                    'password' => array(
+                        'base_path' => $object->get('path'),
                         'user' => $object->get('user'),
+                        'password' => $password,
                     ),
                 ),
             ),
@@ -81,22 +80,15 @@ class hostPanelSiteDeleteProcessor extends modObjectProcessor
         $out = socket_read($this->sock, 1024);
 
         if (stristr($out, 'ERROR')) {
-            $object->set('status', 'deleted');
-            $object->save();
-
-            if (stristr($out, 'secret')) {
-                return $this->failure($this->modx->lexicon('hostpanel_site_err_secret'));
-            } else {
-                return $this->failure($this->modx->lexicon('hostpanel_site_err_delete'));
-            }
+            return $this->failure($this->modx->lexicon('hostpanel_site_err_password'));
         }
 
         if (isset($this->sock)) {
             socket_close($this->sock);
         }
 
-        return $this->success();
+        return $this->success('Пароль успешно сохранён!');
     }
 }
 
-return 'hostPanelSiteDeleteProcessor';
+return 'hostPanelSitePasswordProcessor';

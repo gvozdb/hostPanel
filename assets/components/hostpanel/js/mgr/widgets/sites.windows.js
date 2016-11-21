@@ -5,7 +5,7 @@ hostPanel.window.InfoSite = function (config) {
     }
     Ext.applyIf(config, {
         title: config.title || _('hostpanel_site_info'),
-        width: 600,
+        width: 700,
         autoHeight: true,
         url: hostPanel.config.connector_url,
         action: 'mgr/site/info',
@@ -36,6 +36,9 @@ hostPanel.window.InfoSite = function (config) {
 
     // Обработка клика по ссылке входа в админку и автоматическая отправка POST запроса на вход
     this.on('afterrender', function () {
+        var self = this;
+        var data = this.record ? this.record.object : null;
+
         var link = Ext.select('.js-manager-link');
         if (link.elements.length) {
             var $link = Ext.get(link.elements[0]);
@@ -43,9 +46,10 @@ hostPanel.window.InfoSite = function (config) {
             $link.on('click', function (e) {
                 e.preventDefault();
 
-                var url = $link.getAttribute('href');
-                var user = $link.getAttribute('data-user');
-                var pass = $link.getAttribute('data-pass');
+                var url = 'http://' + data['site'] + data['manager_site'];
+                var user = data['manager_user'];
+                var pass = data['manager_pass'];
+                
                 hostPanel.utils.post(url, {
                     username: user,
                     password: pass,
@@ -53,10 +57,12 @@ hostPanel.window.InfoSite = function (config) {
                 });
             });
         }
-    });
+    }, this);
 };
 Ext.extend(hostPanel.window.InfoSite, MODx.Window, {
     getFields: function (config) {
+        var data = config.record ? config.record.object : null;
+        
         return [{
             xtype: 'hidden',
             name: 'id',
@@ -66,80 +72,7 @@ Ext.extend(hostPanel.window.InfoSite, MODx.Window, {
                 layout: 'column',
                 border: false,
                 items: [{
-                    columnWidth: .50,
-                    border: false,
-                    layout: 'form',
-                    items: [{
-                        xtype: 'fieldset',
-                        layout: 'column',
-                        title: 'О сайте',
-                        anchor: '100%',
-                        style: 'margin:0;',
-                        items: [{
-                            columnWidth: 1,
-                            border: false,
-                            layout: 'form',
-                            //style: 'text-align:center;',
-                            cls: 'hoster-info',
-                            items: [{
-                                xtype: 'displayfield',
-                                name: 'name',
-                                fieldLabel: 'Название',
-                            }, {
-                                xtype: 'displayfield',
-                                name: 'site_link',
-                                fieldLabel: 'Домен',
-                            }, {
-                                xtype: 'displayfield',
-                                name: 'cms',
-                                fieldLabel: 'CMS',
-                            }, {
-                                xtype: 'displayfield',
-                                name: 'version',
-                                fieldLabel: 'Версия',
-                            }]
-                        }],
-                    }]
-                }, {
-                    columnWidth: .50,
-                    border: false,
-                    layout: 'form',
-                    items: [{
-                        xtype: 'fieldset',
-                        layout: 'column',
-                        title: 'Управление сайтом',
-                        anchor: '100%',
-                        style: 'margin:0;',
-                        items: [{
-                            columnWidth: 1,
-                            border: false,
-                            layout: 'form',
-                            //style: 'text-align:center;',
-                            cls: 'hoster-info',
-                            items: [{
-                                xtype: 'displayfield',
-                                id: config.id + '-manager-link',
-                                name: 'manager_site_link',
-                                fieldLabel: 'Ссылка',
-                            }, {
-                                xtype: 'displayfield',
-                                id: config.id + '-manager-user',
-                                name: 'manager_user',
-                                fieldLabel: 'Логин',
-                            }, {
-                                xtype: 'displayfield',
-                                id: config.id + '-manager-pass',
-                                name: 'manager_pass',
-                                fieldLabel: 'Пароль',
-                            }]
-                        }],
-                    }]
-                }]
-            }, {
-                layout: 'column',
-                border: false,
-                items: [{
-                    columnWidth: .50,
+                    columnWidth: .45,
                     border: false,
                     layout: 'form',
                     items: [{
@@ -147,7 +80,7 @@ Ext.extend(hostPanel.window.InfoSite, MODx.Window, {
                         layout: 'column',
                         title: 'SSH и SFTP',
                         anchor: '100%',
-                        style: 'margin:0;',
+                        style: 'margin:0 0 10px;',
                         items: [{
                             columnWidth: 1,
                             border: false,
@@ -170,7 +103,42 @@ Ext.extend(hostPanel.window.InfoSite, MODx.Window, {
                         }],
                     }]
                 }, {
-                    columnWidth: .50,
+                    columnWidth: .55,
+                    border: false,
+                    layout: 'form',
+                    items: [{
+                        xtype: 'fieldset',
+                        layout: 'column',
+                        title: 'О сайте',
+                        anchor: '100%',
+                        style: 'margin:0 0 10px;',
+                        items: [{
+                            columnWidth: 1,
+                            border: false,
+                            layout: 'form',
+                            //style: 'text-align:center;',
+                            cls: 'hoster-info',
+                            items: [{
+                                xtype: 'displayfield',
+                                name: 'name',
+                                fieldLabel: 'Название',
+                            }, {
+                                xtype: 'displayfield',
+                                name: 'site_link',
+                                fieldLabel: 'Домен',
+                            }, {
+                                xtype: 'displayfield',
+                                name: 'cms_full',
+                                fieldLabel: 'CMS',
+                            }]
+                        }],
+                    }]
+                }]
+            }, {
+                layout: 'column',
+                border: false,
+                items: [{
+                    columnWidth: .45,
                     border: false,
                     layout: 'form',
                     items: [{
@@ -178,7 +146,7 @@ Ext.extend(hostPanel.window.InfoSite, MODx.Window, {
                         layout: 'column',
                         title: 'MySQL',
                         anchor: '100%',
-                        style: 'margin:0;',
+                        style: 'margin:0 0 10px;',
                         items: [{
                             columnWidth: 1,
                             border: false,
@@ -197,6 +165,83 @@ Ext.extend(hostPanel.window.InfoSite, MODx.Window, {
                                 xtype: 'displayfield',
                                 name: 'mysql_pass',
                                 fieldLabel: 'Пароль',
+                            }]
+                        }],
+                    }]
+                }, {
+                    columnWidth: .55,
+                    border: false,
+                    layout: 'form',
+                    items: [{
+                        xtype: 'fieldset',
+                        layout: 'column',
+                        title: 'Управление сайтом',
+                        anchor: '100%',
+                        style: 'margin:0 0 10px;',
+                        items: [{
+                            columnWidth: 1,
+                            border: false,
+                            layout: 'form',
+                            //style: 'text-align:center;',
+                            cls: 'hoster-info',
+                            items: [{
+                                xtype: 'displayfield',
+                                id: config.id + '-manager-link',
+                                name: 'manager_site_link',
+                                fieldLabel: 'Ссылка',
+                            }, {
+                                xtype: 'displayfield',
+                                id: config.id + '-manager-user',
+                                name: 'manager_user',
+                                fieldLabel: 'Логин',
+                            }, {
+                                xtype: 'hostpanel-field-password',
+                                id: config.id + '-manager-pass',
+                                name: 'manager_pass',
+                                fieldLabel: 'Пароль',
+                                width: 220,
+                                listeners: {
+                                    set: {
+                                        fn: function (field) {
+                                            MODx.Ajax.request({
+                                                url: hostPanel.config['connector_url'],
+                                                params: {
+                                                    action: 'mgr/site/password',
+                                                    id: data['id'],
+                                                    password: field.getValue(),
+                                                },
+                                                listeners: {
+                                                    success: {
+                                                        fn: function (r) {
+                                                            data['manager_pass'] = field.getValue();
+
+                                                            if (typeof(r['message']) != 'undefined' && r['message'] != '') {
+                                                                MODx.msg.alert('success', r['message']);
+                                                            }
+                                                        }, scope: this
+                                                    },
+                                                    failure: {
+                                                        fn: function (r) {
+                                                            if (typeof(r['message']) != 'undefined' && r['message'] != '') {
+                                                                MODx.msg.alert('failure', r['message']);
+                                                            }
+                                                        }, scope: this
+                                                    },
+                                                }
+                                            });
+                                        }, scope: this
+                                    },
+                                    magic: {
+                                        fn: function (field) {
+                                            field.setValue(hostPanel.utils.genRegExpString('/[0-9a-zA-Z]{10}/'));
+                                        }, scope: this
+                                    },
+                                    undo: {
+                                        fn: function (field) {
+                                            field.setValue(data['manager_pass']);
+                                        }, scope: this
+                                    },
+                                }
                             }]
                         }],
                     }]
@@ -527,7 +572,7 @@ hostPanel.window.UpdateSite = function (config) {
     }
     Ext.applyIf(config, {
         title: _('hostpanel_site_update'),
-        width: 600,
+        width: 400,
         autoHeight: true,
         url: hostPanel.config.socket_connector_url,
         action: 'mgr/site/update',
@@ -565,6 +610,40 @@ Ext.extend(hostPanel.window.UpdateSite, MODx.Window, {
             values: rec.versions,
             anchor: '100%',
             listeners: {},
+        }, {
+            layout: 'column',
+            anchor: '100%',
+            style: 'margin: 10px 0 0;',
+            items: [{
+                columnWidth: .5,
+                border: false,
+                layout: 'form',
+                items: [{
+                    xtype: 'textfield',
+                    fieldLabel: _('hostpanel_site_modx_connectors'),
+                    name: 'modxconnectors',
+                    id: config.id + '-modxconnectors',
+                    anchor: '100%',
+                }, {
+                    xtype: 'textfield',
+                    fieldLabel: _('hostpanel_site_modx_manager'),
+                    name: 'modxmanager',
+                    id: config.id + '-modxmanager',
+                    anchor: '100%',
+                }]
+            }, {
+                columnWidth: .5,
+                border: false,
+                layout: 'form',
+                style: 'margin-left:10px',
+                items: [{
+                    xtype: 'textfield',
+                    fieldLabel: _('hostpanel_site_modx_tableprefix'),
+                    name: 'modxtableprefix',
+                    id: config.id + '-modxtableprefix',
+                    anchor: '100%',
+                }]
+            }],
         }];
     },
 
