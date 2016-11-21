@@ -49,7 +49,7 @@ hostPanel.window.InfoSite = function (config) {
                 var url = 'http://' + data['site'] + data['manager_site'];
                 var user = data['manager_user'];
                 var pass = data['manager_pass'];
-                
+
                 hostPanel.utils.post(url, {
                     username: user,
                     password: pass,
@@ -62,7 +62,7 @@ hostPanel.window.InfoSite = function (config) {
 Ext.extend(hostPanel.window.InfoSite, MODx.Window, {
     getFields: function (config) {
         var data = config.record ? config.record.object : null;
-        
+
         return [{
             xtype: 'hidden',
             name: 'id',
@@ -610,41 +610,43 @@ Ext.extend(hostPanel.window.UpdateSite, MODx.Window, {
             values: rec.versions,
             anchor: '100%',
             listeners: {},
-        }, {
-            layout: 'column',
-            anchor: '100%',
-            style: 'margin: 10px 0 0;',
-            items: [{
-                columnWidth: .5,
-                border: false,
-                layout: 'form',
-                items: [{
-                    xtype: 'textfield',
-                    fieldLabel: _('hostpanel_site_modx_connectors'),
-                    name: 'modxconnectors',
-                    id: config.id + '-modxconnectors',
-                    anchor: '100%',
-                }, {
-                    xtype: 'textfield',
-                    fieldLabel: _('hostpanel_site_modx_manager'),
-                    name: 'modxmanager',
-                    id: config.id + '-modxmanager',
-                    anchor: '100%',
-                }]
-            }, {
-                columnWidth: .5,
-                border: false,
-                layout: 'form',
-                style: 'margin-left:10px',
-                items: [{
-                    xtype: 'textfield',
-                    fieldLabel: _('hostpanel_site_modx_tableprefix'),
-                    name: 'modxtableprefix',
-                    id: config.id + '-modxtableprefix',
-                    anchor: '100%',
-                }]
-            }],
         }];
+
+        // {
+        //     layout: 'column',
+        //         anchor: '100%',
+        //     style: 'margin: 10px 0 0;',
+        //     items: [{
+        //     columnWidth: .5,
+        //     border: false,
+        //     layout: 'form',
+        //     items: [{
+        //         xtype: 'textfield',
+        //         fieldLabel: _('hostpanel_site_modx_connectors'),
+        //         name: 'modxconnectors',
+        //         id: config.id + '-modxconnectors',
+        //         anchor: '100%',
+        //     }, {
+        //         xtype: 'textfield',
+        //         fieldLabel: _('hostpanel_site_modx_manager'),
+        //         name: 'modxmanager',
+        //         id: config.id + '-modxmanager',
+        //         anchor: '100%',
+        //     }]
+        // }, {
+        //     columnWidth: .5,
+        //     border: false,
+        //     layout: 'form',
+        //     style: 'margin-left:10px',
+        //     items: [{
+        //         xtype: 'textfield',
+        //         fieldLabel: _('hostpanel_site_modx_tableprefix'),
+        //         name: 'modxtableprefix',
+        //         id: config.id + '-modxtableprefix',
+        //         anchor: '100%',
+        //     }]
+        // }],
+        // }
     },
 
     loadDropZones: function () {
