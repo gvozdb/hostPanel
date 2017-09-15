@@ -127,6 +127,7 @@ Ext.extend(hostPanel.grid.Sites, MODx.grid.Grid, {
             modxconnectors: hostPanel.utils.genRegExpString('connectors_/[0-9a-z]{10}/'),
             modxmanager: 'adminka',
             modxtableprefix: hostPanel.utils.genRegExpString('modx_/[0-9A-Za-z]{10}/_'),
+            php: '7.0',
         });
         w.show(e.target);
     },
@@ -205,6 +206,46 @@ Ext.extend(hostPanel.grid.Sites, MODx.grid.Grid, {
                         values['modxconnectors'] = values['connectors_site'];
                         values['modxmanager'] = values['manager_site'];
                         values['modxtableprefix'] = values['mysql_table_prefix'];
+                        w.setValues(values);
+                        w.show(e.target);
+                    }, scope: this
+                }
+            }
+        });
+    },
+
+    phpSite: function (btn, e, row) {
+        if (typeof(row) != 'undefined') {
+            this.menu.record = row.data;
+        }
+        else if (!this.menu.record) {
+            return false;
+        }
+        var id = this.menu.record.id;
+
+        MODx.Ajax.request({
+            url: this.config.url,
+            params: {
+                action: 'mgr/site/get',
+                id: id
+            },
+            listeners: {
+                success: {
+                    fn: function (r) {
+                        var w = MODx.load({
+                            xtype: 'hostpanel-site-window-php',
+                            id: Ext.id(),
+                            record: r,
+                            listeners: {
+                                success: {
+                                    fn: function () {
+                                        this.refresh();
+                                    }, scope: this
+                                }
+                            }
+                        });
+                        w.reset();
+                        var values = Ext.apply({}, r.object);
                         w.setValues(values);
                         w.show(e.target);
                     }, scope: this
@@ -366,7 +407,7 @@ Ext.extend(hostPanel.grid.Sites, MODx.grid.Grid, {
     },
 
     getFields: function (config) {
-        return ['id', 'idx', 'group', 'name', 'description', 'cms', 'version', 'status', 'actions'];
+        return ['id', 'idx', 'group', 'name', 'description', 'php', 'cms', 'version', 'status', 'actions'];
     },
 
     getColumns: function (config) {
@@ -389,7 +430,7 @@ Ext.extend(hostPanel.grid.Sites, MODx.grid.Grid, {
             dataIndex: 'group',
             sortable: true,
             fixed: true,
-            width: 200,
+            width: 150,
         }, {
             header: _('hostpanel_site_name'),
             dataIndex: 'name',
@@ -402,26 +443,33 @@ Ext.extend(hostPanel.grid.Sites, MODx.grid.Grid, {
             sortable: false,
             width: 400,
         }, {
+            header: _('hostpanel_site_php'),
+            dataIndex: 'php',
+            sortable: true,
+            fixed: true,
+            resizable: false,
+            width: 100,
+        }, {
             header: _('hostpanel_site_cms'),
             dataIndex: 'cms',
             sortable: true,
             fixed: true,
             resizable: false,
-            width: 100,
+            width: 60,
         }, {
             header: _('hostpanel_site_version'),
             dataIndex: 'version',
             sortable: true,
             fixed: true,
             resizable: false,
-            width: 100,
+            width: 70,
         }, {
             header: _('hostpanel_site_status'),
             dataIndex: 'status',
             sortable: true,
             fixed: true,
             resizable: false,
-            width: 100,
+            width: 70,
         }, {
             header: _('hostpanel_grid_actions'),
             dataIndex: 'actions',
@@ -429,7 +477,7 @@ Ext.extend(hostPanel.grid.Sites, MODx.grid.Grid, {
             sortable: false,
             fixed: true,
             resizable: false,
-            width: 150,
+            width: 200,
             id: 'actions',
         }];
     },

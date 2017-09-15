@@ -87,6 +87,15 @@ class hostPanelSiteGetListProcessor extends modObjectGetListProcessor
                 'button' => true,
                 'menu' => true,
             );
+            // PHP
+            $array['actions'][] = array(
+                'cls' => '',
+                'icon' => 'icon icon-wrench',
+                'title' => $this->modx->lexicon('hostpanel_site_php'),
+                'action' => 'phpSite',
+                'button' => true,
+                'menu' => true,
+            );
             if ($array['cms'] == 'modx') {
                 // Update
                 $array['actions'][] = array(

@@ -51,6 +51,41 @@ Ext.reg('hostpanel-combo-password', hostPanel.combo.Password);
 Ext.reg('hostpanel-field-password', hostPanel.combo.Password);
 
 
+// Комбобокс "PHP"
+hostPanel.combo.php = function (config) {
+    config = config || {};
+    Ext.applyIf(config, {
+        store: new Ext.data.JsonStore({
+            id: 0,
+            comboid: config.id,
+            root: 'results',
+            totalProperty: 'total',
+            autoLoad: true,
+            fields: ['value', 'display'],
+            url: hostPanel.config.connector_url,
+            baseParams: {
+                action: 'mgr/settings/getlist',
+                key: 'php',
+                parent: config.parent || '',
+                values: config.values || {},
+                sortby: config.sortby || 'value',
+                sortdir: config.sortdir || 'DESC',
+            },
+        }),
+        mode: 'remote',
+        //mode: 'local',
+        displayField: 'display',
+        value: 'value',
+        valueField: 'value',
+        typeAhead: true,
+        triggerAction: 'all',
+    });
+    hostPanel.combo.php.superclass.constructor.call(this, config);
+};
+Ext.extend(hostPanel.combo.php, MODx.combo.ComboBox);
+Ext.reg('hostpanel-combo-php', hostPanel.combo.php);
+
+
 // Комбобокс "CMS"
 hostPanel.combo.cms = function (config) {
     config = config || {};

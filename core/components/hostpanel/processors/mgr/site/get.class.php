@@ -28,22 +28,40 @@ class hostPanelSiteGetProcessor extends modObjectGetProcessor
     {
         $array = $this->object->toArray();
 
-        // Ссылка на админку в виде активной ссылки
+        // Название сайта с активной ссылкой
+        if (!empty($array['name']) && !empty($array['site'])) {
+            $array['name_link'] = '<a href="http://' . $array['site'] . '" target="_blank">' . $array['name'] . '</a>';
+        }
+
+        // Ссылка на сайт в виде активной ссылки
         if ($array['site']) {
             $array['site_link'] = '<a href="http://' . $array['site'] . '" target="_blank">' . $array['site'] . '</a>';
         }
+
+        // Ссылка на админку в виде активной ссылки
         if ($array['manager_site']) {
             $array['manager_site_link'] = '<a
                 href="http://' . $array['site'] . $array['manager_site'] . '"
                 class="js-manager-link">' . $array['manager_site'] . '</a>';
-                // data-user="' . $array['manager_user'] . '"
-                // data-pass="' . $array['manager_pass'] . '"
+            // data-user="' . $array['manager_user'] . '"
+            // data-pass="' . $array['manager_pass'] . '"
         }
+
+        // Ссылка на файловый менеджер в виде активной ссылки
+        if ($tmp = $this->modx->getOption('hostpanel_host_domain')) {
+            $array['sprutio_link'] = '<a
+                href="https://' . $tmp . ':9443/"
+                data-user="' . $array['sftp_user'] . '"
+                data-pass="' . $array['sftp_pass'] . '"
+                class="js-sprutio-link">' . $array['sftp_user'] . '</a>
+                ';
+        }
+        unset($tmp);
 
         // Получаем список доступных версий
         if ($array['cms']) {
             $array['cms_full'] = $array['cms'] . ' ' . $array['version'];
-            
+
             $versions = array();
             $q = $this->modx->newQuery('hostPanelSettings', array(
                 'key' => 'version',

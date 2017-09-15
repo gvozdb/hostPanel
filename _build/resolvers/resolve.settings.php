@@ -11,6 +11,26 @@ if ($object->xpdo) {
             $class = 'hostPanelSettings';
             $settings = array(
                 array(
+                    'key' => 'php',
+                    'parent' => '',
+                    'value' => '5.6',
+                ),
+                array(
+                    'key' => 'php',
+                    'parent' => '',
+                    'value' => '7.0',
+                ),
+                array(
+                    'key' => 'php',
+                    'parent' => '',
+                    'value' => '7.1',
+                ),
+                array(
+                    'key' => 'php',
+                    'parent' => '',
+                    'value' => '7.2',
+                ),
+                array(
                     'key' => 'cms',
                     'parent' => '',
                     'value' => 'Без CMS==',
@@ -84,6 +104,11 @@ if ($object->xpdo) {
                     'key' => 'version',
                     'parent' => 'modx',
                     'value' => '2.5.7-pl',
+                ),
+                array(
+                    'key' => 'version',
+                    'parent' => 'modx',
+                    'value' => '2.5.8-pl',
                 ),
                 // array(
                 //     'key' => 'layout',

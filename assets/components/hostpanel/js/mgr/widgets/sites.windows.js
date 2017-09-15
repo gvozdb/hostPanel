@@ -39,11 +39,11 @@ hostPanel.window.InfoSite = function (config) {
         var self = this;
         var data = this.record ? this.record.object : null;
 
-        var link = Ext.select('.js-manager-link');
-        if (link.elements.length) {
-            var $link = Ext.get(link.elements[0]);
+        var manager_link = Ext.select('.js-manager-link');
+        if (manager_link.elements['length']) {
+            var $manager_link = Ext.get(manager_link.elements[0]);
 
-            $link.on('click', function (e) {
+            $manager_link.on('click', function (e) {
                 e.preventDefault();
 
                 var url = 'http://' + data['site'] + data['manager_site'];
@@ -55,6 +55,33 @@ hostPanel.window.InfoSite = function (config) {
                     password: pass,
                     login: 1,
                 });
+            });
+        }
+
+        var sprutio_link = Ext.select('.js-sprutio-link');
+        if (sprutio_link.elements['length']) {
+            var $sprutio_link = Ext.get(sprutio_link.elements[0]);
+
+            $sprutio_link.on('click', function (e) {
+                e.preventDefault();
+
+                var url = $sprutio_link.dom['href'] + 'auth';
+                var user = data['sftp_user'];
+                var pass = data['sftp_pass'];
+
+                hostPanel.utils.ajaxSubmit(url, {
+                        login: user,
+                        password: pass,
+                        language: 'ru',
+                    },
+                    function (response, opts) {
+                        // var obj = Ext.decode(response.responseText);
+                        console.log('success response', response);
+                    },
+                    function (response, opts) {
+                        console.log('failure response', response);
+                    }
+                );
             });
         }
     }, this);
@@ -93,7 +120,7 @@ Ext.extend(hostPanel.window.InfoSite, MODx.Window, {
                                 fieldLabel: 'Порт',
                             }, {
                                 xtype: 'displayfield',
-                                name: 'sftp_user',
+                                name: 'sprutio_link',
                                 fieldLabel: 'Логин',
                             }, {
                                 xtype: 'displayfield',
@@ -120,12 +147,12 @@ Ext.extend(hostPanel.window.InfoSite, MODx.Window, {
                             cls: 'hoster-info',
                             items: [{
                                 xtype: 'displayfield',
-                                name: 'name',
-                                fieldLabel: 'Название',
+                                name: 'name_link',
+                                fieldLabel: 'Сайт',
                             }, {
                                 xtype: 'displayfield',
-                                name: 'site_link',
-                                fieldLabel: 'Домен',
+                                name: 'php',
+                                fieldLabel: 'PHP',
                             }, {
                                 xtype: 'displayfield',
                                 name: 'cms_full',
@@ -302,11 +329,12 @@ Ext.extend(hostPanel.window.CreateSite, MODx.Window, {
                 items: [{
                     layout: 'column',
                     anchor: '100%',
-                    style: 'margin-bottom: 15px;',
+                    style: 'margin-bottom: 5px;',
                     items: [{
-                        columnWidth: .5,
+                        columnWidth: .25,
                         border: false,
                         layout: 'form',
+                        style: 'margin-right: 2px;',
                         items: [{
                             xtype: 'textfield',
                             fieldLabel: _('hostpanel_site_username'),
@@ -314,7 +342,13 @@ Ext.extend(hostPanel.window.CreateSite, MODx.Window, {
                             name: 'username',
                             id: config.id + '-username',
                             anchor: '100%',
-                        }, {
+                        }],
+                    }, {
+                        columnWidth: .25,
+                        border: false,
+                        layout: 'form',
+                        style: 'margin-left: 2px; margin-right: 2px;',
+                        items: [{
                             xtype: 'textfield',
                             fieldLabel: _('hostpanel_site_name'),
                             emptyText: _('hostpanel_site_name_desc'),
@@ -322,12 +356,12 @@ Ext.extend(hostPanel.window.CreateSite, MODx.Window, {
                             id: config.id + '-name',
                             anchor: '100%',
                             //allowBlank: false,
-                        }]
+                        }],
                     }, {
-                        columnWidth: .5,
+                        columnWidth: .25,
                         border: false,
                         layout: 'form',
-                        style: 'margin-left:10px',
+                        style: 'margin-left: 2px; margin-right: 2px;',
                         items: [{
                             xtype: 'textfield',
                             fieldLabel: _('hostpanel_site_domain'),
@@ -335,23 +369,42 @@ Ext.extend(hostPanel.window.CreateSite, MODx.Window, {
                             name: 'domain',
                             id: config.id + '-domain',
                             anchor: '100%',
-                        }, {
+                        }],
+                    }, {
+                        columnWidth: .25,
+                        border: false,
+                        layout: 'form',
+                        style: 'margin-left: 2px;',
+                        items: [{
                             xtype: 'textfield',
                             fieldLabel: _('hostpanel_site_group'),
                             name: 'group',
                             id: config.id + '-group',
                             anchor: '100%',
                             //allowBlank: false,
-                        }]
+                        }],
                     }],
                 }, {
                     layout: 'column',
                     anchor: '100%',
-                    style: 'margin-bottom: 15px;',
                     items: [{
-                        columnWidth: .5,
+                        columnWidth: .3,
                         border: false,
                         layout: 'form',
+                        style: 'margin-right: 5px;',
+                        items: [{
+                            xtype: 'hostpanel-combo-php',
+                            fieldLabel: _('hostpanel_site_php'),
+                            name: 'php',
+                            hiddenName: 'php',
+                            id: config.id + '-php',
+                            anchor: '100%',
+                        }]
+                    }, {
+                        columnWidth: .4,
+                        border: false,
+                        layout: 'form',
+                        style: 'margin-left: 5px; margin-right: 5px;',
                         items: [{
                             xtype: 'hostpanel-combo-cms',
                             fieldLabel: _('hostpanel_site_cms'),
@@ -398,10 +451,10 @@ Ext.extend(hostPanel.window.CreateSite, MODx.Window, {
                             },
                         }]
                     }, {
-                        columnWidth: .5,
+                        columnWidth: .3,
                         border: false,
                         layout: 'form',
-                        style: 'margin-left:10px',
+                        style: 'margin-left: 5px;',
                         items: [{
                             xtype: 'hostpanel-combo-version',
                             fieldLabel: _('hostpanel_site_version'),
@@ -428,17 +481,11 @@ Ext.extend(hostPanel.window.CreateSite, MODx.Window, {
                     anchor: '100%',
                     style: 'margin: 0;',
                     items: [{
-                        columnWidth: .5,
+                        columnWidth: .3,
                         border: false,
                         layout: 'form',
+                        style: 'margin-right: 5px;',
                         items: [{
-                            xtype: 'textfield',
-                            fieldLabel: _('hostpanel_site_modx_connectors'),
-                            name: 'modxconnectors',
-                            id: config.id + '-modxconnectors',
-                            anchor: '100%',
-                            hidden: true,
-                        }, {
                             xtype: 'textfield',
                             fieldLabel: _('hostpanel_site_modx_manager'),
                             name: 'modxmanager',
@@ -447,10 +494,23 @@ Ext.extend(hostPanel.window.CreateSite, MODx.Window, {
                             hidden: true,
                         }]
                     }, {
-                        columnWidth: .5,
+                        columnWidth: .4,
                         border: false,
                         layout: 'form',
-                        style: 'margin-left:10px',
+                        style: 'margin-left: 5px; margin-right: 5px;',
+                        items: [{
+                            xtype: 'textfield',
+                            fieldLabel: _('hostpanel_site_modx_connectors'),
+                            name: 'modxconnectors',
+                            id: config.id + '-modxconnectors',
+                            anchor: '100%',
+                            hidden: true,
+                        }]
+                    }, {
+                        columnWidth: .3,
+                        border: false,
+                        layout: 'form',
+                        style: 'margin-left: 5px;',
                         items: [{
                             xtype: 'textfield',
                             fieldLabel: _('hostpanel_site_modx_tableprefix'),
@@ -465,7 +525,7 @@ Ext.extend(hostPanel.window.CreateSite, MODx.Window, {
                     fieldLabel: _('hostpanel_site_description'),
                     name: 'description',
                     id: config.id + '-description',
-                    height: 70,
+                    height: 50,
                     anchor: '100%',
                 }],
             }, {
@@ -653,3 +713,55 @@ Ext.extend(hostPanel.window.UpdateSite, MODx.Window, {
     },
 });
 Ext.reg('hostpanel-site-window-update', hostPanel.window.UpdateSite);
+
+
+hostPanel.window.PhpSite = function (config) {
+    config = config || {};
+    if (!config.id) {
+        config.id = 'hostpanel-site-window-php';
+    }
+    Ext.applyIf(config, {
+        title: _('hostpanel_site_php'),
+        width: 400,
+        autoHeight: true,
+        url: hostPanel.config.socket_connector_url,
+        action: 'mgr/site/phpversion',
+        fields: this.getFields(config),
+        keys: [{
+            key: Ext.EventObject.ENTER, shift: true, fn: function () {
+                this.submit()
+            }, scope: this
+        }]
+    });
+    hostPanel.window.PhpSite.superclass.constructor.call(this, config);
+
+    this.on('hide', function () {
+        var w = this;
+        window.setTimeout(function () {
+            w.close();
+        }, 200);
+    });
+};
+Ext.extend(hostPanel.window.PhpSite, MODx.Window, {
+    getFields: function (config) {
+        var rec = config.record.object;
+
+        return [{
+            xtype: 'hidden',
+            name: 'id',
+            id: config.id + '-id',
+        }, {
+            xtype: 'hostpanel-combo-php',
+            fieldLabel: _('hostpanel_site_php'),
+            name: 'php',
+            hiddenName: 'php',
+            id: config.id + '-php',
+            anchor: '100%',
+            listeners: {},
+        }];
+    },
+
+    loadDropZones: function () {
+    },
+});
+Ext.reg('hostpanel-site-window-php', hostPanel.window.PhpSite);

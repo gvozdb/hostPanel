@@ -7,6 +7,7 @@ class hostPanelSiteCreateProcessor extends modObjectCreateProcessor
     public $languageTopics = array('hostpanel:default');
     protected $name = '';
     protected $domain = '';
+    protected $php = '';
     protected $cms = '';
     protected $version = '';
     protected $modxconnectors = '';
@@ -36,6 +37,7 @@ class hostPanelSiteCreateProcessor extends modObjectCreateProcessor
     {
         $this->name = trim($this->getProperty('name'));
         $this->domain = trim($this->getProperty('domain'));
+        $this->php = trim($this->getProperty('php'));
         $this->cms = trim($this->getProperty('cms'));
         $this->version = trim($this->getProperty('version'));
         $this->modxconnectors = trim($this->getProperty('modxconnectors'));
@@ -47,6 +49,7 @@ class hostPanelSiteCreateProcessor extends modObjectCreateProcessor
 
         $this->setProperty('name', $this->name);
         $this->setProperty('domain', $this->domain);
+        $this->setProperty('php', $this->php);
         $this->setProperty('cms', $this->cms);
         $this->setProperty('version', $this->version);
         $this->setProperty('modxconnectors', $this->modxconnectors);
@@ -119,8 +122,7 @@ class hostPanelSiteCreateProcessor extends modObjectCreateProcessor
         $repl[0][] = '[[+user]]';
         $repl[1][] = $obj->get('user');
 
-        $this->domain = !empty($this->domain) ? str_replace($repl[0], $repl[1], $this->domain)
-            : str_replace($repl[0], $repl[1], $domain_mask);
+        $this->domain = !empty($this->domain) ? str_replace($repl[0], $repl[1], $this->domain) : str_replace($repl[0], $repl[1], $domain_mask);
 
         // Формируем задание
         $task_array['data'] = array(
@@ -135,6 +137,7 @@ class hostPanelSiteCreateProcessor extends modObjectCreateProcessor
             'host' => $host_domain,
             'user' => $obj->get('user'),
             'domain' => $this->domain,
+            'php' => $this->php,
             'version' => $obj->version,
             'modxconnectors' => $obj->modxconnectors,
             'modxmanager' => $obj->modxmanager,

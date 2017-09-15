@@ -1,5 +1,4 @@
 <?php
-
 $BUILD_SETTINGS = array();
 $settings = array();
 $tmp = array(
