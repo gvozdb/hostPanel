@@ -65,23 +65,20 @@ hostPanel.window.InfoSite = function (config) {
             $sprutio_link.on('click', function (e) {
                 e.preventDefault();
 
-                var url = $sprutio_link.dom['href'] + 'auth';
-                var user = data['sftp_user'];
-                var pass = data['sftp_pass'];
-
-                hostPanel.utils.ajaxSubmit(url, {
-                        login: user,
-                        password: pass,
-                        language: 'ru',
+                MODx.Ajax.request({
+                    url: hostPanel.config.connector_url,
+                    params: {
+                        action: 'mgr/site/sprutio',
+                        id: data['id'],
                     },
-                    function (response, opts) {
-                        // var obj = Ext.decode(response.responseText);
-                        console.log('success response', response);
-                    },
-                    function (response, opts) {
-                        console.log('failure response', response);
+                    listeners: {
+                        success: {
+                            fn: function (r) {
+                                window.open($sprutio_link.dom['href']);
+                            }, scope: this
+                        }
                     }
-                );
+                });
             });
         }
     }, this);

@@ -116,23 +116,23 @@ hostPanel.utils.post = function (url, params) {
 };
 
 
-hostPanel.utils.ajaxSubmit = function (url, params, successCallback, failureCallback) {
-    if (!successCallback) {
-        successCallback = function () {
-        };
-    }
-    if (!failureCallback) {
-        failureCallback = function () {
-        };
-    }
-
-    Ext.Ajax.request({
-        url: url,
-        params: params,
-        success: successCallback,
-        failure: failureCallback,
-    });
-};
+// hostPanel.utils.ajaxSubmit = function (url, params, successCallback, failureCallback) {
+//     if (!successCallback) {
+//         successCallback = function () {
+//         };
+//     }
+//     if (!failureCallback) {
+//         failureCallback = function () {
+//         };
+//     }
+//
+//     Ext.Ajax.request({
+//         url: url,
+//         params: params,
+//         success: successCallback,
+//         failure: failureCallback,
+//     });
+// };
 
 
 hostPanel.utils.genRegExpString = function (str) {
