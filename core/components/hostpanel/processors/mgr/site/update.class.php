@@ -87,6 +87,7 @@ class hostPanelSiteUpdateProcessor extends modObjectUpdateProcessor
         $task_array['task'][] = array(
             'updatemodx' => array(
                 'user' => $obj->get('user'),
+                'php' => $obj->get('php'),
                 'version' => $this->version,
             ),
         );

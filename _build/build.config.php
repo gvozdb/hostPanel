@@ -5,7 +5,7 @@ define('PKG_NAME', 'hostPanel');
 define('PKG_NAME_LOWER', strtolower(PKG_NAME));
 
 define('PKG_VERSION', '1.6.8');
-define('PKG_RELEASE', 'beta');
+define('PKG_RELEASE', 'beta2');
 define('PKG_AUTO_INSTALL', true);
 define('PKG_NAMESPACE_PATH', '{core_path}components/' . PKG_NAME_LOWER . '/');
 
