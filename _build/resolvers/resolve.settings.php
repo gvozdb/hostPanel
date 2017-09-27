@@ -43,6 +43,11 @@ if ($object->xpdo) {
                 array(
                     'key' => 'version',
                     'parent' => 'modx',
+                    'value' => '2.3.3-pl',
+                ),
+                array(
+                    'key' => 'version',
+                    'parent' => 'modx',
                     'value' => '2.3.4-pl',
                 ),
                 array(
