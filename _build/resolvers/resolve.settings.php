@@ -145,6 +145,11 @@ if ($object->xpdo) {
                     'parent' => 'modx',
                     'value' => '2.6.5-pl',
                 ),
+                array(
+                    'key' => 'version',
+                    'parent' => 'modx',
+                    'value' => '2.7.0-pl',
+                ),
                 // array(
                 //     'key' => 'layout',
                 //     'parent' => 'modx',
