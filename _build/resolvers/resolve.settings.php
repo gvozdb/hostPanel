@@ -31,6 +31,11 @@ if ($object->xpdo) {
                     'value' => '7.2',
                 ),
                 array(
+                    'key' => 'php',
+                    'parent' => '',
+                    'value' => '7.3',
+                ),
+                array(
                     'key' => 'cms',
                     'parent' => '',
                     'value' => 'Без CMS==',
@@ -149,6 +154,16 @@ if ($object->xpdo) {
                     'key' => 'version',
                     'parent' => 'modx',
                     'value' => '2.7.0-pl',
+                ),
+                array(
+                    'key' => 'version',
+                    'parent' => 'modx',
+                    'value' => '2.7.1-pl',
+                ),
+                array(
+                    'key' => 'version',
+                    'parent' => 'modx',
+                    'value' => '2.7.2-pl',
                 ),
                 // array(
                 //     'key' => 'layout',
