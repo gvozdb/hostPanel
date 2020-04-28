@@ -36,6 +36,11 @@ if ($object->xpdo) {
                     'value' => '7.3',
                 ),
                 array(
+                    'key' => 'php',
+                    'parent' => '',
+                    'value' => '7.4',
+                ),
+                array(
                     'key' => 'cms',
                     'parent' => '',
                     'value' => 'Без CMS==',
@@ -44,21 +49,6 @@ if ($object->xpdo) {
                     'key' => 'cms',
                     'parent' => '',
                     'value' => 'MODX Revolution==modx',
-                ),
-                array(
-                    'key' => 'version',
-                    'parent' => 'modx',
-                    'value' => '2.3.3-pl',
-                ),
-                array(
-                    'key' => 'version',
-                    'parent' => 'modx',
-                    'value' => '2.3.4-pl',
-                ),
-                array(
-                    'key' => 'version',
-                    'parent' => 'modx',
-                    'value' => '2.3.5-pl',
                 ),
                 array(
                     'key' => 'version',
@@ -164,6 +154,11 @@ if ($object->xpdo) {
                     'key' => 'version',
                     'parent' => 'modx',
                     'value' => '2.7.2-pl',
+                ),
+                array(
+                    'key' => 'version',
+                    'parent' => 'modx',
+                    'value' => '2.7.3-pl',
                 ),
                 // array(
                 //     'key' => 'layout',

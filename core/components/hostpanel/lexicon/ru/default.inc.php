@@ -12,6 +12,7 @@ $_lang['hostpanel_cms_packages'] = 'Пакеты';
 $_lang['hostpanel_sites'] = 'Сайты';
 $_lang['hostpanel_site_id'] = 'ID';
 $_lang['hostpanel_site_idx'] = 'idx';
+$_lang['hostpanel_site_user'] = 'Юзер';
 $_lang['hostpanel_site_username'] = 'Имя юзера';
 $_lang['hostpanel_site_username_desc'] = 'Обязательно';
 $_lang['hostpanel_site_name'] = 'Название';
