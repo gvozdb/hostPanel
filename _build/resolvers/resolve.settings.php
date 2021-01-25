@@ -160,6 +160,16 @@ if ($object->xpdo) {
                     'parent' => 'modx',
                     'value' => '2.7.3-pl',
                 ),
+                array(
+                    'key' => 'version',
+                    'parent' => 'modx',
+                    'value' => '2.8.0-pl',
+                ),
+                array(
+                    'key' => 'version',
+                    'parent' => 'modx',
+                    'value' => '2.8.1-pl',
+                ),
                 // array(
                 //     'key' => 'layout',
                 //     'parent' => 'modx',

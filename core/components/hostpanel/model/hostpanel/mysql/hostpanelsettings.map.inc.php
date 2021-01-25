@@ -4,6 +4,10 @@ $xpdo_meta_map['hostPanelSettings']= array (
   'version' => '1.1',
   'table' => 'hostpanel_settings',
   'extends' => 'xPDOSimpleObject',
+  'tableMeta' => 
+  array (
+    'engine' => 'MyISAM',
+  ),
   'fields' => 
   array (
     'key' => '',

@@ -4,13 +4,20 @@ $xpdo_meta_map['hostPanelSite']= array (
   'version' => '1.1',
   'table' => 'hostpanel_sites',
   'extends' => 'xPDOSimpleObject',
+  'tableMeta' => 
+  array (
+    'engine' => 'MyISAM',
+  ),
   'fields' => 
   array (
+    'idx' => 0,
     'name' => '',
     'description' => '',
+    'group' => '',
     'user' => '',
     'site' => '',
     'status' => '',
+    'php' => '',
     'cms' => '',
     'version' => '',
     'layout' => '',
@@ -22,14 +29,25 @@ $xpdo_meta_map['hostPanelSite']= array (
     'mysql_user' => '',
     'mysql_pass' => '',
     'mysql_table_prefix' => '',
+    'connectors_site' => '',
     'manager_site' => '',
     'manager_user' => '',
     'manager_pass' => '',
     'path' => '',
     'active' => 1,
+    'lock' => 0,
   ),
   'fieldMeta' => 
   array (
+    'idx' => 
+    array (
+      'dbtype' => 'integer',
+      'precision' => '10',
+      'phptype' => 'integer',
+      'attributes' => 'unsigned',
+      'null' => false,
+      'default' => 0,
+    ),
     'name' => 
     array (
       'dbtype' => 'varchar',
@@ -43,6 +61,14 @@ $xpdo_meta_map['hostPanelSite']= array (
       'dbtype' => 'text',
       'phptype' => 'text',
       'null' => true,
+      'default' => '',
+    ),
+    'group' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '100',
+      'phptype' => 'string',
+      'null' => false,
       'default' => '',
     ),
     'user' => 
@@ -65,6 +91,14 @@ $xpdo_meta_map['hostPanelSite']= array (
     array (
       'dbtype' => 'varchar',
       'precision' => '100',
+      'phptype' => 'string',
+      'null' => false,
+      'default' => '',
+    ),
+    'php' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '5',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
@@ -158,6 +192,14 @@ $xpdo_meta_map['hostPanelSite']= array (
       'null' => false,
       'default' => '',
     ),
+    'connectors_site' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '100',
+      'phptype' => 'string',
+      'null' => false,
+      'default' => '',
+    ),
     'manager_site' => 
     array (
       'dbtype' => 'varchar',
@@ -198,6 +240,14 @@ $xpdo_meta_map['hostPanelSite']= array (
       'null' => true,
       'default' => 1,
     ),
+    'lock' => 
+    array (
+      'dbtype' => 'tinyint',
+      'precision' => '1',
+      'phptype' => 'boolean',
+      'null' => true,
+      'default' => 0,
+    ),
   ),
   'indexes' => 
   array (
@@ -210,6 +260,22 @@ $xpdo_meta_map['hostPanelSite']= array (
       'columns' => 
       array (
         'name' => 
+        array (
+          'length' => '',
+          'collation' => 'A',
+          'null' => false,
+        ),
+      ),
+    ),
+    'group' => 
+    array (
+      'alias' => 'group',
+      'primary' => false,
+      'unique' => false,
+      'type' => 'BTREE',
+      'columns' => 
+      array (
+        'group' => 
         array (
           'length' => '',
           'collation' => 'A',
@@ -441,6 +507,22 @@ $xpdo_meta_map['hostPanelSite']= array (
         ),
       ),
     ),
+    'connectors_site' => 
+    array (
+      'alias' => 'connectors_site',
+      'primary' => false,
+      'unique' => false,
+      'type' => 'BTREE',
+      'columns' => 
+      array (
+        'connectors_site' => 
+        array (
+          'length' => '',
+          'collation' => 'A',
+          'null' => false,
+        ),
+      ),
+    ),
     'manager_site' => 
     array (
       'alias' => 'manager_site',
@@ -498,22 +580,6 @@ $xpdo_meta_map['hostPanelSite']= array (
       'columns' => 
       array (
         'path' => 
-        array (
-          'length' => '',
-          'collation' => 'A',
-          'null' => false,
-        ),
-      ),
-    ),
-    'active' => 
-    array (
-      'alias' => 'active',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'active' => 
         array (
           'length' => '',
           'collation' => 'A',

@@ -1,3 +1,3 @@
 <?php
-require_once (dirname(dirname(__FILE__)) . '/hostpanelsettings.class.php');
+require_once (dirname(__DIR__) . '/hostpanelsettings.class.php');
 class hostPanelSettings_mysql extends hostPanelSettings {}
