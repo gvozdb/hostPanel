@@ -46,8 +46,8 @@ define('BUILD_CHUNK_STATIC', false);
 define('BUILD_SNIPPET_STATIC', false);
 define('BUILD_PLUGIN_STATIC', false);
 
-$BUILD_RESOLVERS = array(
+$BUILD_RESOLVERS = [
     'tables',
     'settings',
     'systemsettings',
-);
+];

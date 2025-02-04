@@ -7,7 +7,7 @@ class hostPanelSprutioAuthProcessor extends modObjectProcessor
 {
     public $objectType = 'hostPanelSite';
     public $classKey = 'hostPanelSite';
-    public $languageTopics = array('hostpanel');
+    public $languageTopics = ['hostpanel'];
     //public $permission = 'remove';
 
     /**
@@ -29,31 +29,31 @@ class hostPanelSprutioAuthProcessor extends modObjectProcessor
 
         //
         $curl = curl_init();
-        curl_setopt_array($curl, array(
+        curl_setopt_array($curl, [
             CURLOPT_URL => 'https://' . $this->modx->getOption('hostpanel_host_domain') . ':9443/auth',
             CURLOPT_HEADER => true,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_SSL_VERIFYHOST => false,
             CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => http_build_query(array(
+            CURLOPT_POSTFIELDS => http_build_query([
                 'login' => $object->get('sftp_user'),
                 'password' => $object->get('sftp_pass'),
                 'language' => 'ru',
-            )),
-        ));
+            ]),
+        ]);
         $response = curl_exec($curl);
         if ($errno = curl_errno($curl)) {
-            $response = array(
+            $response = [
                 'errorCode' => $errno,
                 'errorMessage' => curl_error($curl),
-            );
+            ];
 
             return $this->failure(print_r($response, 1), $response);
         }
         curl_close($curl);
 
-        $cookies = array();
+        $cookies = [];
         if (preg_match_all('/^Set-Cookie:\s*([^;]*)/mi', $response, $matches)) {
             foreach ($matches[1] as $v) {
                 parse_str($v, $cookie);

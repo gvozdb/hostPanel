@@ -1,78 +1,78 @@
 <?php
-$xpdo_meta_map['hostPanelSettings']= array (
-  'package' => 'hostpanel',
-  'version' => '1.1',
-  'table' => 'hostpanel_settings',
-  'extends' => 'xPDOSimpleObject',
-  'tableMeta' => 
-  array (
+$xpdo_meta_map['hostPanelSettings']= [
+    'package' => 'hostpanel',
+    'version' => '1.1',
+    'table' => 'hostpanel_settings',
+    'extends' => 'xPDOSimpleObject',
+    'tableMeta' =>
+  [
     'engine' => 'MyISAM',
-  ),
-  'fields' => 
-  array (
+  ],
+    'fields' =>
+  [
     'key' => '',
     'parent' => '',
     'value' => '',
-  ),
-  'fieldMeta' => 
-  array (
-    'key' => 
-    array (
+  ],
+    'fieldMeta' =>
+  [
+      'key' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'parent' => 
-    array (
+    ],
+      'parent' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => true,
       'default' => '',
-    ),
-    'value' => 
-    array (
+    ],
+      'value' =>
+    [
       'dbtype' => 'text',
       'phptype' => 'string',
       'null' => true,
       'default' => '',
-    ),
-  ),
-  'indexes' => 
-  array (
-    'key' => 
-    array (
-      'alias' => 'key',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'key' => 
-        array (
+    ],
+  ],
+    'indexes' =>
+  [
+      'key' =>
+    [
+        'alias' => 'key',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'key' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'parent' => 
-    array (
-      'alias' => 'parent',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'parent' => 
-        array (
+        ],
+      ],
+    ],
+      'parent' =>
+    [
+        'alias' => 'parent',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'parent' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-  ),
-);
+        ],
+      ],
+    ],
+  ],
+];

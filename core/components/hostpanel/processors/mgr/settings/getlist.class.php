@@ -9,27 +9,27 @@ class hostPanelSettingsGetListProcessor extends modObjectGetListProcessor
     {
         $key = $this->getProperty('key');
         $parent = $this->getProperty('parent', '');
-        $values = $this->getProperty('values', array());
+        $values = $this->getProperty('values', []);
         if (!is_array($values)) {
             $values = $this->modx->fromJSON($values);
             if (!is_array($values)) {
-                $values = array();
+                $values = [];
             }
         }
 
         $c = $this->modx->newQuery($this->classKey);
         $c->select('value');
-        $c->where(array_merge(array('key' => $key), array('parent' => $parent)));
+        $c->where(array_merge(['key' => $key], ['parent' => $parent]));
         $c->limit(9999);
         $c->sortby($this->getProperty('sortby', 'id'), $this->getProperty('sortdir', 'DESC'));
 
-        $output = array();
+        $output = [];
         if ($c->prepare() && $c->stmt->execute()) {
             $rows = $c->stmt->fetchAll(PDO::FETCH_ASSOC);
             foreach ($rows as $i => $v) {
                 @list($display, $value) = explode('==', $v['value']);
 
-                $tmp = array();
+                $tmp = [];
                 $tmp['display'] = isset($display) ? $display : '';
                 $tmp['value'] = isset($value) ? $value : $tmp['display'];
 

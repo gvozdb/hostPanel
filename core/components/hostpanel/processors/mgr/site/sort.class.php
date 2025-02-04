@@ -37,26 +37,26 @@ class hostPanelSiteSortProcessor extends modObjectProcessor
         $c = $this->modx->newQuery('hostPanelSite');
         $c->command('UPDATE');
         if ($source->get('idx') < $target->get('idx')) {
-            $c->query['set']['idx'] = array(
+            $c->query['set']['idx'] = [
                 'value' => '`idx` - 1',
                 'type' => false,
-            );
-            $c->andCondition(array(
+            ];
+            $c->andCondition([
                 'idx:<=' => $target->idx,
                 'idx:>' => $source->idx,
-            ));
-            $c->andCondition(array(
+            ]);
+            $c->andCondition([
                 'idx:>' => 0,
-            ));
+            ]);
         } else {
-            $c->query['set']['idx'] = array(
+            $c->query['set']['idx'] = [
                 'value' => '`idx` + 1',
                 'type' => false,
-            );
-            $c->andCondition(array(
+            ];
+            $c->andCondition([
                 'idx:>=' => $target->idx,
                 'idx:<' => $source->idx,
-            ));
+            ]);
         }
         $c->prepare();
         $c->stmt->execute();
@@ -89,7 +89,7 @@ class hostPanelSiteSortProcessor extends modObjectProcessor
             $update = $this->modx->prepare("UPDATE {$table} SET idx = ? WHERE id = ?");
             $i = 0;
             while ($id = $c->stmt->fetch(PDO::FETCH_COLUMN)) {
-                $update->execute(array($i, $id));
+                $update->execute([$i, $id]);
                 $i++;
             }
         }

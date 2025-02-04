@@ -7,7 +7,7 @@ class hostPanelSiteGetProcessor extends modObjectGetProcessor
 {
     public $objectType = 'hostPanelSite';
     public $classKey = 'hostPanelSite';
-    public $languageTopics = array('hostpanel:default');
+    public $languageTopics = ['hostpanel:default'];
     //public $permission = 'view';
 
     /**
@@ -62,11 +62,11 @@ class hostPanelSiteGetProcessor extends modObjectGetProcessor
         if ($array['cms']) {
             $array['cms_full'] = $array['cms'] . ' ' . $array['version'];
 
-            $versions = array();
-            $q = $this->modx->newQuery('hostPanelSettings', array(
+            $versions = [];
+            $q = $this->modx->newQuery('hostPanelSettings', [
                 'key' => 'version',
                 'parent' => $array['cms'],
-            ));
+            ]);
             $q->select('hostPanelSettings.value as version');
             $q->prepare();
             $q->stmt->execute();

@@ -33,7 +33,7 @@ if ($integrate) {
 
     if (!empty($options['attributes']['settings'])) {
         foreach ($options['attributes']['settings'] as $k => $value) {
-            if ($setting = $modx->getObject('modSystemSetting', array('key' => $k))) {
+            if ($setting = $modx->getObject('modSystemSetting', ['key' => $k])) {
                 $value = $setting->get('value');
             }
 

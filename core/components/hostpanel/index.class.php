@@ -34,7 +34,7 @@ abstract class hostPanelMainController extends modExtraManagerController {
 	 * @return array
 	 */
 	public function getLanguageTopics() {
-		return array('hostpanel:default');
+		return ['hostpanel:default'];
 	}
 
 

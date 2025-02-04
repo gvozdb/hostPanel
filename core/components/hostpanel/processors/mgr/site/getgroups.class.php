@@ -15,19 +15,19 @@ class hostPanelSiteGetListGroupsProcessor extends modObjectGetListProcessor
         $c->sortby($this->getProperty('sortby', '`' . $key . '`'), $this->getProperty('sortdir', 'ASC'));
         $c->groupby('`' . $key . '`');
 
-        $output = array(
-            array(
+        $output = [
+            [
                 'display' => '- Не выбрано -',
                 'value' => 0,
-            ),
-        );
+            ],
+        ];
         if ($c->prepare() && $c->stmt->execute()) {
             $rows = $c->stmt->fetchAll(PDO::FETCH_COLUMN);
             foreach ($rows as $v) {
-                $tmp = array(
+                $tmp = [
                     'display' => $v ?: '- Без группы -',
                     'value' => $v,
-                );
+                ];
 
                 $output[] = $tmp;
             }

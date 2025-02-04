@@ -11,7 +11,7 @@ if ($transport->xpdo) {
         case xPDOTransport::ACTION_UPGRADE:
             if (!empty($options['settings']) && !empty($options['update_settings'])) {
                 foreach ($options['update_settings'] as $k => $v) {
-                    if (!empty($v) && $setting = $modx->getObject('modSystemSetting', array('key' => $k))) {
+                    if (!empty($v) && $setting = $modx->getObject('modSystemSetting', ['key' => $k])) {
                         $setting->set('value', $v);
                         $setting->save();
 

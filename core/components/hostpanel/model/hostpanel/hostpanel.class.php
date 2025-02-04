@@ -12,7 +12,7 @@ class hostPanel {
 	 * @param modX $modx
 	 * @param array $config
 	 */
-	function __construct(modX &$modx, array $config = array()) {
+	function __construct(modX &$modx, array $config = []) {
 		$this->modx =& $modx;
 
 		$corePath = $this->modx->getOption('hostpanel_core_path', $config, $this->modx->getOption('core_path') . 'components/hostpanel/');
@@ -20,7 +20,7 @@ class hostPanel {
 		$connectorUrl = $assetsUrl .'connector.php';
 		$socketConnectorUrl = $assetsUrl .'socket-connector.php';
 
-		$this->config = array_merge(array(
+		$this->config = array_merge([
 			'assetsUrl' => $assetsUrl,
 			'cssUrl' => $assetsUrl . 'css/',
 			'jsUrl' => $assetsUrl . 'js/',
@@ -35,7 +35,7 @@ class hostPanel {
 			'chunkSuffix' => '.chunk.tpl',
 			'snippetsPath' => $corePath . 'elements/snippets/',
 			'processorsPath' => $corePath . 'processors/'
-		), $config);
+        ], $config);
 
 		$this->modx->addPackage('hostpanel', $this->config['modelPath']);
 		$this->modx->lexicon->load('hostpanel:default');

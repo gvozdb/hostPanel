@@ -4,7 +4,7 @@ class hostPanelSitePhpVersionProcessor extends modObjectUpdateProcessor
 {
     public $objectType = 'hostPanelSite';
     public $classKey = 'hostPanelSite';
-    public $languageTopics = array('hostpanel');
+    public $languageTopics = ['hostpanel'];
     //public $permission = 'save';
 
     protected $php = '';
@@ -69,20 +69,20 @@ class hostPanelSitePhpVersionProcessor extends modObjectUpdateProcessor
         $obj = &$this->object;
 
         // Формируем задание
-        $task_array['data'] = array(
+        $task_array['data'] = [
             'secret' => $this->modx->getOption('hostpanel_secret'),
             'id' => $obj->get('id'),
             'user' => $obj->get('user'),
             'pass' => $this->sock_pass,
             'dbname' => $this->modx->getOption('dbname'),
             'table' => trim($this->modx->getTableName($this->classKey), '`'),
-        );
-        $task_array['task'][] = array(
-            'php' => array(
+        ];
+        $task_array['task'][] = [
+            'php' => [
                 'user' => $obj->get('user'),
                 'php' => $this->php,
-            ),
-        );
+            ],
+        ];
 
         // Отсылаем задание сокету
         $task_yaml = yaml_emit($task_array);

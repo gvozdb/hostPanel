@@ -6,7 +6,7 @@
 class hostPanelSiteDisableProcessor extends modObjectProcessor {
 	public $objectType = 'hostPanelSite';
 	public $classKey = 'hostPanelSite';
-	public $languageTopics = array('hostpanel');
+	public $languageTopics = ['hostpanel'];
 	//public $permission = 'save';
 
 

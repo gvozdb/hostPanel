@@ -12,7 +12,7 @@ $modx->lexicon->load('hostpanel:default');
 // handle request
 $corePath = $modx->getOption('hostpanel_core_path', null, $modx->getOption('core_path') . 'components/hostpanel/');
 $path = $modx->getOption('processorsPath', $hostPanel->config, $corePath . 'processors/');
-$modx->request->handleRequest(array(
+$modx->request->handleRequest([
 	'processors_path' => $path,
 	'location' => '',
-));
+]);

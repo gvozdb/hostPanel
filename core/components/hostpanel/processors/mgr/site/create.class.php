@@ -4,7 +4,7 @@ class hostPanelSiteCreateProcessor extends modObjectCreateProcessor
 {
     public $objectType = 'hostPanelSite';
     public $classKey = 'hostPanelSite';
-    public $languageTopics = array('hostpanel:default');
+    public $languageTopics = ['hostpanel:default'];
     protected $name = '';
     protected $domain = '';
     protected $php = '';
@@ -64,7 +64,7 @@ class hostPanelSiteCreateProcessor extends modObjectCreateProcessor
         if (!function_exists(yaml_parse)) {
             return $this->failure($this->modx->lexicon('hostpanel_site_err_yaml_notfound'));
         }
-        if ($this->modx->getCount($this->classKey, array('name' => $this->name))) {
+        if ($this->modx->getCount($this->classKey, ['name' => $this->name])) {
             $this->modx->error->addField('name', $this->modx->lexicon('hostpanel_site_err_ae'));
 
             return $this->failure($this->modx->lexicon('hostpanel_site_err_ae'));
@@ -93,16 +93,16 @@ class hostPanelSiteCreateProcessor extends modObjectCreateProcessor
     {
         $obj = &$this->object;
 
-        $repl = array(
-            array(
+        $repl = [
+            [
                 '[[+id]]',
                 '[[+name]]',
-            ),
-            array(
+            ],
+            [
                 $obj->get('id'),
                 $obj->get('name'),
-            ),
-        );
+            ],
+        ];
 
         $host_domain = $this->modx->getOption('hostpanel_host_domain');
         $domain_mask = $this->modx->getOption('hostpanel_domain_mask');
@@ -125,15 +125,15 @@ class hostPanelSiteCreateProcessor extends modObjectCreateProcessor
         $this->domain = !empty($this->domain) ? str_replace($repl[0], $repl[1], $this->domain) : str_replace($repl[0], $repl[1], $domain_mask);
 
         // Формируем задание
-        $task_array['data'] = array(
+        $task_array['data'] = [
             'secret' => $this->modx->getOption('hostpanel_secret'),
             'id' => $obj->get('id'),
             'user' => $obj->get('user'),
             'pass' => $this->sock_pass,
             'dbname' => $this->modx->getOption('dbname'),
             'table' => trim($this->modx->getTableName($this->classKey), '`'),
-        );
-        $task = array(
+        ];
+        $task = [
             'host' => $host_domain,
             'user' => $obj->get('user'),
             'domain' => $this->domain,
@@ -142,15 +142,15 @@ class hostPanelSiteCreateProcessor extends modObjectCreateProcessor
             'modxconnectors' => $obj->modxconnectors,
             'modxmanager' => $obj->modxmanager,
             'modxtableprefix' => $obj->modxtableprefix,
-        );
+        ];
         if ($obj->get('cms') == 'modx') {
-            $task_array['task'][] = array(
+            $task_array['task'][] = [
                 'addmodx' => $task,
-            );
+            ];
         } elseif ($obj->get('cms') == '') {
-            $task_array['task'][] = array(
+            $task_array['task'][] = [
                 'addplace' => $task,
-            );
+            ];
         }
 
         // Отсылаем задание сокету

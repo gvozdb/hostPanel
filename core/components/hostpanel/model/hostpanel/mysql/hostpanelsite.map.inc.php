@@ -1,15 +1,15 @@
 <?php
-$xpdo_meta_map['hostPanelSite']= array (
-  'package' => 'hostpanel',
-  'version' => '1.1',
-  'table' => 'hostpanel_sites',
-  'extends' => 'xPDOSimpleObject',
-  'tableMeta' => 
-  array (
+$xpdo_meta_map['hostPanelSite']= [
+    'package' => 'hostpanel',
+    'version' => '1.1',
+    'table' => 'hostpanel_sites',
+    'extends' => 'xPDOSimpleObject',
+    'tableMeta' =>
+  [
     'engine' => 'MyISAM',
-  ),
-  'fields' => 
-  array (
+  ],
+    'fields' =>
+  [
     'idx' => 0,
     'name' => '',
     'description' => '',
@@ -36,556 +36,556 @@ $xpdo_meta_map['hostPanelSite']= array (
     'path' => '',
     'active' => 1,
     'lock' => 0,
-  ),
-  'fieldMeta' => 
-  array (
-    'idx' => 
-    array (
+  ],
+    'fieldMeta' =>
+  [
+      'idx' =>
+    [
       'dbtype' => 'integer',
       'precision' => '10',
       'phptype' => 'integer',
       'attributes' => 'unsigned',
       'null' => false,
       'default' => 0,
-    ),
-    'name' => 
-    array (
+    ],
+      'name' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'description' => 
-    array (
+    ],
+      'description' =>
+    [
       'dbtype' => 'text',
       'phptype' => 'text',
       'null' => true,
       'default' => '',
-    ),
-    'group' => 
-    array (
+    ],
+      'group' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'user' => 
-    array (
+    ],
+      'user' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'site' => 
-    array (
+    ],
+      'site' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'status' => 
-    array (
+    ],
+      'status' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'php' => 
-    array (
+    ],
+      'php' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '5',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'cms' => 
-    array (
+    ],
+      'cms' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'version' => 
-    array (
+    ],
+      'version' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'layout' => 
-    array (
+    ],
+      'layout' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'sftp_port' => 
-    array (
+    ],
+      'sftp_port' =>
+    [
       'dbtype' => 'integer',
       'precision' => '10',
       'phptype' => 'integer',
       'attributes' => 'unsigned',
       'null' => false,
       'default' => 22,
-    ),
-    'sftp_user' => 
-    array (
+    ],
+      'sftp_user' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'sftp_pass' => 
-    array (
+    ],
+      'sftp_pass' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'mysql_site' => 
-    array (
+    ],
+      'mysql_site' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'mysql_db' => 
-    array (
+    ],
+      'mysql_db' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'mysql_user' => 
-    array (
+    ],
+      'mysql_user' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'mysql_pass' => 
-    array (
+    ],
+      'mysql_pass' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'mysql_table_prefix' => 
-    array (
+    ],
+      'mysql_table_prefix' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'connectors_site' => 
-    array (
+    ],
+      'connectors_site' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'manager_site' => 
-    array (
+    ],
+      'manager_site' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'manager_user' => 
-    array (
+    ],
+      'manager_user' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'manager_pass' => 
-    array (
+    ],
+      'manager_pass' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'path' => 
-    array (
+    ],
+      'path' =>
+    [
       'dbtype' => 'varchar',
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
-    ),
-    'active' => 
-    array (
+    ],
+      'active' =>
+    [
       'dbtype' => 'tinyint',
       'precision' => '1',
       'phptype' => 'boolean',
       'null' => true,
       'default' => 1,
-    ),
-    'lock' => 
-    array (
+    ],
+      'lock' =>
+    [
       'dbtype' => 'tinyint',
       'precision' => '1',
       'phptype' => 'boolean',
       'null' => true,
       'default' => 0,
-    ),
-  ),
-  'indexes' => 
-  array (
-    'name' => 
-    array (
-      'alias' => 'name',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'name' => 
-        array (
+    ],
+  ],
+    'indexes' =>
+  [
+      'name' =>
+    [
+        'alias' => 'name',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'name' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'group' => 
-    array (
-      'alias' => 'group',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'group' => 
-        array (
+        ],
+      ],
+    ],
+      'group' =>
+    [
+        'alias' => 'group',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'group' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'user' => 
-    array (
-      'alias' => 'user',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'user' => 
-        array (
+        ],
+      ],
+    ],
+      'user' =>
+    [
+        'alias' => 'user',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'user' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'site' => 
-    array (
-      'alias' => 'site',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'site' => 
-        array (
+        ],
+      ],
+    ],
+      'site' =>
+    [
+        'alias' => 'site',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'site' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'status' => 
-    array (
-      'alias' => 'status',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'status' => 
-        array (
+        ],
+      ],
+    ],
+      'status' =>
+    [
+        'alias' => 'status',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'status' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'cms' => 
-    array (
-      'alias' => 'cms',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'cms' => 
-        array (
+        ],
+      ],
+    ],
+      'cms' =>
+    [
+        'alias' => 'cms',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'cms' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'version' => 
-    array (
-      'alias' => 'version',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'version' => 
-        array (
+        ],
+      ],
+    ],
+      'version' =>
+    [
+        'alias' => 'version',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'version' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'layout' => 
-    array (
-      'alias' => 'layout',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'layout' => 
-        array (
+        ],
+      ],
+    ],
+      'layout' =>
+    [
+        'alias' => 'layout',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'layout' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'sftp_port' => 
-    array (
-      'alias' => 'sftp_port',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'sftp_port' => 
-        array (
+        ],
+      ],
+    ],
+      'sftp_port' =>
+    [
+        'alias' => 'sftp_port',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'sftp_port' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'sftp_user' => 
-    array (
-      'alias' => 'sftp_user',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'sftp_user' => 
-        array (
+        ],
+      ],
+    ],
+      'sftp_user' =>
+    [
+        'alias' => 'sftp_user',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'sftp_user' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'sftp_pass' => 
-    array (
-      'alias' => 'sftp_pass',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'sftp_pass' => 
-        array (
+        ],
+      ],
+    ],
+      'sftp_pass' =>
+    [
+        'alias' => 'sftp_pass',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'sftp_pass' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'mysql_site' => 
-    array (
-      'alias' => 'mysql_site',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'mysql_site' => 
-        array (
+        ],
+      ],
+    ],
+      'mysql_site' =>
+    [
+        'alias' => 'mysql_site',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'mysql_site' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'mysql_db' => 
-    array (
-      'alias' => 'mysql_db',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'mysql_db' => 
-        array (
+        ],
+      ],
+    ],
+      'mysql_db' =>
+    [
+        'alias' => 'mysql_db',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'mysql_db' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'mysql_user' => 
-    array (
-      'alias' => 'mysql_user',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'mysql_user' => 
-        array (
+        ],
+      ],
+    ],
+      'mysql_user' =>
+    [
+        'alias' => 'mysql_user',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'mysql_user' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'mysql_pass' => 
-    array (
-      'alias' => 'mysql_pass',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'mysql_pass' => 
-        array (
+        ],
+      ],
+    ],
+      'mysql_pass' =>
+    [
+        'alias' => 'mysql_pass',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'mysql_pass' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'mysql_table_prefix' => 
-    array (
-      'alias' => 'mysql_table_prefix',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'mysql_table_prefix' => 
-        array (
+        ],
+      ],
+    ],
+      'mysql_table_prefix' =>
+    [
+        'alias' => 'mysql_table_prefix',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'mysql_table_prefix' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'connectors_site' => 
-    array (
-      'alias' => 'connectors_site',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'connectors_site' => 
-        array (
+        ],
+      ],
+    ],
+      'connectors_site' =>
+    [
+        'alias' => 'connectors_site',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'connectors_site' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'manager_site' => 
-    array (
-      'alias' => 'manager_site',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'manager_site' => 
-        array (
+        ],
+      ],
+    ],
+      'manager_site' =>
+    [
+        'alias' => 'manager_site',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'manager_site' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'manager_user' => 
-    array (
-      'alias' => 'manager_user',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'manager_user' => 
-        array (
+        ],
+      ],
+    ],
+      'manager_user' =>
+    [
+        'alias' => 'manager_user',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'manager_user' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'manager_pass' => 
-    array (
-      'alias' => 'manager_pass',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'manager_pass' => 
-        array (
+        ],
+      ],
+    ],
+      'manager_pass' =>
+    [
+        'alias' => 'manager_pass',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'manager_pass' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-    'path' => 
-    array (
-      'alias' => 'path',
-      'primary' => false,
-      'unique' => false,
-      'type' => 'BTREE',
-      'columns' => 
-      array (
-        'path' => 
-        array (
+        ],
+      ],
+    ],
+      'path' =>
+    [
+        'alias' => 'path',
+        'primary' => false,
+        'unique' => false,
+        'type' => 'BTREE',
+        'columns' =>
+      [
+          'path' =>
+        [
           'length' => '',
           'collation' => 'A',
           'null' => false,
-        ),
-      ),
-    ),
-  ),
-);
+        ],
+      ],
+    ],
+  ],
+];

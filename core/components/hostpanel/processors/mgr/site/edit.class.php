@@ -7,7 +7,7 @@ class hostPanelSiteEditProcessor extends modObjectUpdateProcessor
 {
     public $objectType = 'hostPanelSite';
     public $classKey = 'hostPanelSite';
-    public $languageTopics = array('hostpanel');
+    public $languageTopics = ['hostpanel'];
     //public $permission = 'save';
 
     /**
@@ -37,7 +37,7 @@ class hostPanelSiteEditProcessor extends modObjectUpdateProcessor
 
         if (empty($name)) {
             $this->modx->error->addField('name', $this->modx->lexicon('hostpanel_site_err_name'));
-        } elseif ($this->modx->getCount($this->classKey, array('name' => $name, 'id:!=' => $id))) {
+        } elseif ($this->modx->getCount($this->classKey, ['name' => $name, 'id:!=' => $id])) {
             $this->modx->error->addField('name', $this->modx->lexicon('hostpanel_site_err_ae'));
         }
 

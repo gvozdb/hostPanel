@@ -4,7 +4,7 @@ class hostPanelSiteDeleteProcessor extends modObjectProcessor
 {
     public $objectType = 'hostPanelSite';
     public $classKey = 'hostPanelSite';
-    public $languageTopics = array('hostpanel');
+    public $languageTopics = ['hostpanel'];
     //public $permission = 'remove';
 
     private $sock_host = 'localhost';
@@ -58,23 +58,23 @@ class hostPanelSiteDeleteProcessor extends modObjectProcessor
         $object->save();
 
         // Отсылаем задание сокету
-        $task_array = array(
-            'data' => array(
+        $task_array = [
+            'data' => [
                 'secret' => $this->modx->getOption('hostpanel_secret'),
                 'id' => $id,
                 'user' => $object->get('user'),
                 'pass' => $this->sock_pass,
                 'dbname' => $this->modx->getOption('dbname'),
                 'table' => trim($this->modx->getTableName($this->classKey), '`'),
-            ),
-            'task' => array(
-                array(
-                    'remove' => array(
+            ],
+            'task' => [
+                [
+                    'remove' => [
                         'user' => $object->get('user'),
-                    ),
-                ),
-            ),
-        );
+                    ],
+                ],
+            ],
+        ];
 
         $task_yaml = yaml_emit($task_array);
         socket_write($this->sock, $task_yaml, strlen($task_yaml));
