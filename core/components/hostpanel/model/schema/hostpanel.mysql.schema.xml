@@ -5,7 +5,7 @@
     <object class="hostPanelSite" table="hostpanel_sites" extends="xPDOSimpleObject">
         <field key="idx" dbtype="integer" precision="10" phptype="integer" attributes="unsigned" null="false" default="0"/>
         <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
-        <field key="description" dbtype="text" phptype="text" null="true" default=""/>
+        <field key="description" dbtype="text" phptype="string" null="true" default=""/>
         <field key="group" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
         <field key="user" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
         <field key="site" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
