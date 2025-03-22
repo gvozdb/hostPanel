@@ -54,12 +54,31 @@ class hostPanelSiteGetListProcessor extends modObjectGetListProcessor
      */
     public function prepareRow(xPDOObject $object)
     {
-        $array = $object->toArray();
+        $data = $object->toArray();
 
-        $array['actions'] = [];
-        if ($array['status'] == 'process') {
+        //
+        // Manager
+        $data['manager'] = [];
+        if ($data['status'] !== 'deleted' && $data['status'] !== 'process') {
+            if ($data['cms'] === 'modx') {
+                // Enter to manager panel
+                $data['manager'][] = [
+                    'cls' => '',
+                    'icon' => 'icon icon-sign-in',
+                    'title' => $this->modx->lexicon('hostpanel_site_manager'),
+                    'action' => 'managerSite',
+                    'button' => true,
+                    // 'menu' => true,
+                ];
+            }
+        }
+
+        //
+        // Buttons and menu
+        $data['actions'] = [];
+        if ($data['status'] === 'process') {
             // Refresh
-            $array['actions'][] = [
+            $data['actions'][] = [
                 'cls' => '',
                 'icon' => 'icon icon-refresh',
                 'title' => $this->modx->lexicon('hostpanel_site_refresh'),
@@ -68,9 +87,20 @@ class hostPanelSiteGetListProcessor extends modObjectGetListProcessor
                 'menu' => true,
             ];
         }
-        if ($array['status'] != 'deleted' && $array['status'] != 'process') {
+        if ($data['status'] !== 'deleted' && $data['status'] !== 'process') {
+            // if ($data['cms'] === 'modx') {
+            //     // Enter to manager panel
+            //     $data['actions'][] = [
+            //         'cls' => '',
+            //         'icon' => 'icon icon-sign-in',
+            //         'title' => $this->modx->lexicon('hostpanel_site_manager'),
+            //         'action' => 'managerSite',
+            //         'button' => true,
+            //         'menu' => true,
+            //     ];
+            // }
             // Info
-            $array['actions'][] = [
+            $data['actions'][] = [
                 'cls' => '',
                 'icon' => 'icon icon-info',
                 'title' => $this->modx->lexicon('hostpanel_site_info'),
@@ -79,7 +109,7 @@ class hostPanelSiteGetListProcessor extends modObjectGetListProcessor
                 'menu' => true,
             ];
             // Edit
-            $array['actions'][] = [
+            $data['actions'][] = [
                 'cls' => '',
                 'icon' => 'icon icon-edit',
                 'title' => $this->modx->lexicon('hostpanel_site_edit'),
@@ -88,7 +118,7 @@ class hostPanelSiteGetListProcessor extends modObjectGetListProcessor
                 'menu' => true,
             ];
             // PHP
-            $array['actions'][] = [
+            $data['actions'][] = [
                 'cls' => '',
                 'icon' => 'icon icon-wrench',
                 'title' => $this->modx->lexicon('hostpanel_site_php'),
@@ -96,9 +126,9 @@ class hostPanelSiteGetListProcessor extends modObjectGetListProcessor
                 'button' => true,
                 'menu' => true,
             ];
-            if ($array['cms'] == 'modx') {
+            if ($data['cms'] == 'modx') {
                 // Update
-                $array['actions'][] = [
+                $data['actions'][] = [
                     'cls' => '',
                     'icon' => 'icon icon-repeat',
                     'title' => $this->modx->lexicon('hostpanel_site_update'),
@@ -108,10 +138,10 @@ class hostPanelSiteGetListProcessor extends modObjectGetListProcessor
                 ];
             }
         }
-        if (!$array['lock']) {
-            if ($array['status'] == 'deleted') {
+        if (!$data['lock']) {
+            if ($data['status'] == 'deleted') {
                 // Remove
-                $array['actions'][] = [
+                $data['actions'][] = [
                     'cls' => '',
                     'icon' => 'icon icon-times action-red',
                     'title' => $this->modx->lexicon('hostpanel_site_remove'),
@@ -121,9 +151,9 @@ class hostPanelSiteGetListProcessor extends modObjectGetListProcessor
                     'menu' => true,
                 ];
             } else {
-                if ($array['status'] != 'process') {
+                if ($data['status'] != 'process') {
                     // Lock
-                    $array['actions'][] = [
+                    $data['actions'][] = [
                         'cls' => '',
                         'icon' => 'icon icon-lock',
                         'title' => $this->modx->lexicon('hostpanel_site_lock'),
@@ -135,7 +165,7 @@ class hostPanelSiteGetListProcessor extends modObjectGetListProcessor
                 }
 
                 // Delete
-                $array['actions'][] = [
+                $data['actions'][] = [
                     'cls' => '',
                     'icon' => 'icon icon-times action-red',
                     'title' => $this->modx->lexicon('hostpanel_site_delete'),
@@ -147,7 +177,7 @@ class hostPanelSiteGetListProcessor extends modObjectGetListProcessor
             }
         } else {
             // Unlock
-            $array['actions'][] = [
+            $data['actions'][] = [
                 'cls' => '',
                 'icon' => 'icon icon-unlock',
                 'title' => $this->modx->lexicon('hostpanel_site_unlock'),
@@ -158,7 +188,7 @@ class hostPanelSiteGetListProcessor extends modObjectGetListProcessor
             ];
         }
 
-        return $array;
+        return $data;
     }
 }
 

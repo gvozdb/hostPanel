@@ -20,22 +20,26 @@
     padding-right: 7px !important;
 }
 
-.x-grid3-col-actions {
-    padding: 3px 0 3px 5px;
+.x-grid3-hd-manager {
+    padding: 13px 0;
+    text-align: center;
 }
 
+.x-grid3-col-manager,
+.x-grid3-col-actions {
+    padding: 3px 0;
+    text-align: center;
+}
 ul.hostpanel-row-actions {
     display: inline-block;
     margin: 0;
     padding: 0;
     list-style: none;
 }
-
 ul.hostpanel-row-actions li {
     /*float: left;*/
     display: inline-block;
 }
-
 ul.hostpanel-row-actions .btn {
     padding: 5px;
     margin-right: 2px;

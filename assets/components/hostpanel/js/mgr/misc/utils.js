@@ -51,7 +51,7 @@ hostPanel.utils.getMenu = function (actions, grid, selected) {
 };
 
 
-hostPanel.utils.renderActions = function (value, metaData, row) {
+hostPanel.utils.renderActions = function (buttons, metaData, row) {
     var res = [];
     var cls, icon, title, action, item, string = '';
 
@@ -59,11 +59,11 @@ hostPanel.utils.renderActions = function (value, metaData, row) {
         //metaData.css = "";
     }
 
-    for (var i in row.data.actions) {
-        if (!row.data.actions.hasOwnProperty(i)) {
+    for (var i in buttons) {
+        if (!buttons.hasOwnProperty(i)) {
             continue;
         }
-        var a = row.data.actions[i];
+        var a = buttons[i];
         if (!a['button']) {
             continue;
         }

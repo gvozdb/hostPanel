@@ -41,6 +41,31 @@ if ($object->xpdo) {
                     'value' => '7.4',
                 ],
                 [
+                    'key' => 'php',
+                    'parent' => '',
+                    'value' => '8.0',
+                ],
+                [
+                    'key' => 'php',
+                    'parent' => '',
+                    'value' => '8.1',
+                ],
+                [
+                    'key' => 'php',
+                    'parent' => '',
+                    'value' => '8.2',
+                ],
+                [
+                    'key' => 'php',
+                    'parent' => '',
+                    'value' => '8.3',
+                ],
+                [
+                    'key' => 'php',
+                    'parent' => '',
+                    'value' => '8.4',
+                ],
+                [
                     'key' => 'cms',
                     'parent' => '',
                     'value' => 'Без CMS==',

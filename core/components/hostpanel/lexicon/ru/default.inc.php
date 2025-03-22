@@ -34,7 +34,8 @@ $_lang['hostpanel_site_modx_tableprefix'] = 'Префикс таблиц';
 $_lang['hostpanel_site_none'] = 'Нет';
 $_lang['hostpanel_site_last_version'] = 'Крайняя версия';
 
-$_lang['hostpanel_site_info'] = 'Информация о сайте ';
+$_lang['hostpanel_site_manager'] = 'Войти в админку';
+$_lang['hostpanel_site_info'] = 'Информация о сайте';
 $_lang['hostpanel_site_refresh'] = 'Проверить статус выполнения';
 $_lang['hostpanel_site_create'] = 'Добавить сайт';
 $_lang['hostpanel_site_edit'] = 'Редактировать';
@@ -68,6 +69,7 @@ $_lang['hostpanel_site_err_password_empty'] = 'Необходимо указат
 $_lang['hostpanel_site_err_password'] = 'Возникла ошибка при смене пароля. Попытайтесь снова.';
 
 $_lang['hostpanel_grid_search'] = 'Поиск';
+$_lang['hostpanel_grid_manager'] = '<i class="icon icon-user-circle"></i>';
 $_lang['hostpanel_grid_actions'] = 'Действия';
 
 $_lang['hostpanel_select_group'] = 'Выбрать группу';

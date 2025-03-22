@@ -69,6 +69,42 @@ Ext.extend(hostPanel.grid.Sites, MODx.grid.Grid, {
         this.addContextMenuItem(menu);
     },
 
+    managerSite: function (btn, e, row) {
+        if (typeof(row) != 'undefined') {
+            this.menu.record = row.data;
+        }
+        else if (!this.menu.record) {
+            return false;
+        }
+        var id = this.menu.record.id;
+
+        MODx.Ajax.request({
+            url: this.config.url,
+            params: {
+                action: 'mgr/site/get',
+                id: id,
+            },
+            listeners: {
+                success: {
+                    fn: function (r) {
+                        // console.log('r', r);
+
+                        var url = 'http://' + r.object['site'] + r.object['manager_site'];
+                        var user = r.object['manager_user'];
+                        var pass = r.object['manager_pass'];
+
+                        hostPanel.utils.post(url, {
+                            username: user,
+                            password: pass,
+                            login: 1,
+                        });
+                    },
+                    scope: this
+                }
+            }
+        });
+    },
+
     infoSite: function (btn, e, row) {
         if (typeof(row) != 'undefined') {
             this.menu.record = row.data;
@@ -410,13 +446,14 @@ Ext.extend(hostPanel.grid.Sites, MODx.grid.Grid, {
         return [
             'id',
             'idx',
-            'user',
             'group',
+            'user',
             'name',
             'description',
             'php',
             'cms',
             'version',
+            'manager',
             'status',
             'actions',
         ];
@@ -440,15 +477,24 @@ Ext.extend(hostPanel.grid.Sites, MODx.grid.Grid, {
             resizable: false,
             hidden: true,
         }, {
-            header: _('hostpanel_site_user'),
-            dataIndex: 'user',
-            width: 120,
+            header: _('hostpanel_site_group'),
+            dataIndex: 'group',
+            width: 124,
             sortable: true,
             fixed: true,
         }, {
-            header: _('hostpanel_site_group'),
-            dataIndex: 'group',
-            width: 150,
+            header: _('hostpanel_grid_manager'),
+            id: 'manager',
+            dataIndex: 'manager',
+            width: 43,
+            sortable: false,
+            fixed: true,
+            resizable: false,
+            renderer: hostPanel.utils.renderActions,
+        }, {
+            header: _('hostpanel_site_user'),
+            dataIndex: 'user',
+            width: 120,
             sortable: true,
             fixed: true,
         }, {
@@ -465,7 +511,7 @@ Ext.extend(hostPanel.grid.Sites, MODx.grid.Grid, {
         }, {
             header: _('hostpanel_site_php'),
             dataIndex: 'php',
-            width: 100,
+            width: 70,
             sortable: true,
             fixed: true,
             resizable: false,
